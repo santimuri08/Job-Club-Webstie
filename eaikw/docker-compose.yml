@@ -1,0 +1,63 @@
+services:
+  # Production service with nginx
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: ${DOCKER_USERNAME}/eleventy-portfolio:${VERSION:-latest}
+    container_name: eleventy-portfolio-prod
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    profiles:
+      - production
+    networks:
+      - portfolio-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--tries=1",
+          "--spider",
+          "http://localhost/health",
+        ]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Development service with live reload
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: eleventy-portfolio:dev
+    container_name: eleventy-portfolio-dev
+    ports:
+      - "3000:8080"
+    volumes:
+      - ./src:/app/src:cached
+      - ./package.json:/app/package.json:ro
+      - ./package-lock.json:/app/package-lock.json:ro
+      - ./.eleventy.js:/app/.eleventy.js:ro
+      - node_modules:/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    profiles:
+      - dev
+      - development
+    networks:
+      - portfolio-network
+    stdin_open: true
+    tty: true
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  node_modules:
