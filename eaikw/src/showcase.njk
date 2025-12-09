@@ -1,0 +1,297 @@
+---
+layout: layouts/base.njk
+title: Component Showcase
+description: Visual testing showcase for all UI components
+permalink: /showcase/
+eleventyExcludeFromCollections: true
+---
+
+<div class="swiss-container py-12">
+  <h1 class="text-fluid-h1 font-bold mb-8">Component Showcase</h1>
+  <p class="text-fluid-body text-neutral-600 mb-12">Visual testing reference for all UI components</p>
+
+  <!-- Typography Showcase -->
+  <section data-component="typography-showcase" class="mb-16 p-8 bg-neutral-50 rounded-lg">
+    <h2 class="text-fluid-h2 font-bold mb-6">Typography</h2>
+
+    <div class="space-y-4">
+      <div>
+        <p class="text-sm text-neutral-500 mb-2">Display</p>
+        <h1 class="text-display font-bold">The quick brown fox jumps</h1>
+      </div>
+
+      <div>
+        <p class="text-sm text-neutral-500 mb-2">Heading 1</p>
+        <h1 class="text-fluid-h1 font-bold">The quick brown fox jumps over the lazy dog</h1>
+      </div>
+
+      <div>
+        <p class="text-sm text-neutral-500 mb-2">Heading 2</p>
+        <h2 class="text-fluid-h2 font-semibold">The quick brown fox jumps over the lazy dog</h2>
+      </div>
+
+      <div>
+        <p class="text-sm text-neutral-500 mb-2">Heading 3</p>
+        <h3 class="text-fluid-h3 font-semibold">The quick brown fox jumps over the lazy dog</h3>
+      </div>
+
+      <div>
+        <p class="text-sm text-neutral-500 mb-2">Body Large</p>
+        <p class="text-fluid-body-lg">
+          The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-sm text-neutral-500 mb-2">Body</p>
+        <p class="text-fluid-body">
+          The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-sm text-neutral-500 mb-2">Caption</p>
+        <p class="text-fluid-caption text-neutral-600">The quick brown fox jumps over the lazy dog.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shadow Showcase -->
+  <section data-component="shadow-showcase" class="mb-16">
+    <h2 class="text-fluid-h2 font-bold mb-6">Shadow System</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="p-6 bg-white shadow-swiss-sm rounded-lg">
+        <p class="font-medium mb-2">Subtle</p>
+        <p class="text-sm text-neutral-600">shadow-swiss-sm</p>
+      </div>
+
+      <div class="p-6 bg-white shadow-swiss-md rounded-lg">
+        <p class="font-medium mb-2">Medium</p>
+        <p class="text-sm text-neutral-600">shadow-swiss-md</p>
+      </div>
+
+      <div class="p-6 bg-white shadow-swiss-lg rounded-lg">
+        <p class="font-medium mb-2">Strong</p>
+        <p class="text-sm text-neutral-600">shadow-swiss-lg</p>
+      </div>
+
+      <div class="p-6 bg-white shadow-swiss-hover rounded-lg">
+        <p class="font-medium mb-2">Hover</p>
+        <p class="text-sm text-neutral-600">shadow-swiss-hover</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hover Effects Showcase -->
+  <section data-component="hover-showcase" class="mb-16">
+    <h2 class="text-fluid-h2 font-bold mb-6">Hover Effects</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-8 bg-white border border-neutral-200 rounded-lg hover-lift">
+        <p class="font-medium mb-2">Lift Effect</p>
+        <p class="text-sm text-neutral-600">hover-lift class</p>
+      </div>
+
+      <div class="p-8 bg-white border border-neutral-200 rounded-lg hover-glow">
+        <p class="font-medium mb-2">Glow Effect</p>
+        <p class="text-sm text-neutral-600">hover-glow class</p>
+      </div>
+
+      <div class="p-8 bg-white border border-neutral-200 rounded-lg hover-scale">
+        <p class="font-medium mb-2">Scale Effect</p>
+        <p class="text-sm text-neutral-600">hover-scale class</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Glassmorphism Showcase -->
+  <section data-component="glass-showcase" class="mb-16">
+    <h2 class="text-fluid-h2 font-bold mb-6">Glassmorphism</h2>
+
+    <div
+      class="relative p-12 rounded-lg overflow-hidden"
+      style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 glass-light rounded-lg">
+          <p class="font-medium mb-2">Glass Light</p>
+          <p class="text-sm">Frosted glass effect on light backgrounds</p>
+        </div>
+
+        <div class="p-6 glass-dark rounded-lg text-white">
+          <p class="font-medium mb-2">Glass Dark</p>
+          <p class="text-sm">Frosted glass effect on dark backgrounds</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Button Showcase -->
+  <section data-component="button-showcase" class="mb-16">
+    <h2 class="text-fluid-h2 font-bold mb-6">Buttons</h2>
+
+    <div class="flex flex-wrap gap-4">
+      <button
+        class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-medium rounded border-2 border-transparent hover:bg-primary-700 transition-colors"
+      >
+        Primary Button
+      </button>
+      <button
+        class="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-neutral-900 font-medium rounded border-2 border-neutral-300 hover:bg-neutral-50 transition-colors"
+      >
+        Secondary Button
+      </button>
+      <button
+        class="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-primary-600 font-medium rounded border-2 border-primary-600 hover:bg-primary-600 hover:text-white transition-colors"
+      >
+        Outline Button
+      </button>
+      <button
+        class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-medium rounded border-2 border-transparent hover:bg-primary-700 hover:shadow-primary-glow transition-all"
+      >
+        Primary with Glow
+      </button>
+    </div>
+  </section>
+
+  <!-- Card Showcase -->
+  <section data-component="card-showcase" class="mb-16">
+    <h2 class="text-fluid-h2 font-bold mb-6">Cards</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <article
+        class="bg-white border-2 border-neutral-900 rounded-lg overflow-hidden transition-all duration-250 hover:shadow-swiss-lg hover:-translate-y-1"
+        data-component="project-card"
+        data-testid="showcase-project-card"
+      >
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2">
+            <a href="#" class="text-neutral-900 hover:text-primary-600 transition-colors">Project Card</a>
+          </h3>
+          <p class="text-neutral-600 mb-4">This is a sample project card with hover effects and shadow system.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-neutral-50 text-neutral-600 px-2 py-1 rounded text-sm">React</span>
+            <span class="bg-neutral-50 text-neutral-600 px-2 py-1 rounded text-sm">TypeScript</span>
+            <span class="bg-neutral-50 text-neutral-600 px-2 py-1 rounded text-sm">Tailwind</span>
+          </div>
+        </div>
+      </article>
+
+      <article
+        class="bg-white border-2 border-neutral-900 rounded-lg overflow-hidden transition-all duration-250 hover:shadow-swiss-lg hover:-translate-y-1"
+        data-component="blog-card"
+        data-testid="showcase-blog-card"
+      >
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2">
+            <a href="#" class="text-neutral-900 hover:text-primary-600 transition-colors">Blog Card</a>
+          </h3>
+          <p class="text-neutral-600 mb-4">This is a sample blog post card showcasing typography and spacing.</p>
+          <div class="flex items-center gap-4 text-neutral-500 text-sm">
+            <time class="font-medium">November 4, 2025</time>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-neutral-50 text-neutral-600 px-2 py-1 rounded text-sm">design</span>
+              <span class="bg-neutral-50 text-neutral-600 px-2 py-1 rounded text-sm">development</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Grid Patterns -->
+  <section data-component="grid-showcase" class="mb-16">
+    <h2 class="text-fluid-h2 font-bold mb-6">Grid Patterns</h2>
+
+    <div class="grid-asymmetric mb-8">
+      <div class="p-8 bg-primary-50 rounded-lg">
+        <p class="font-medium mb-2">Column 1 (1fr)</p>
+        <p class="text-sm text-neutral-600">Asymmetric grid layout</p>
+      </div>
+      <div class="p-8 bg-primary-100 rounded-lg">
+        <p class="font-medium mb-2">Column 2 (0.95fr)</p>
+        <p class="text-sm text-neutral-600">Golden ratio proportions</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Color Palette -->
+  <section data-component="color-showcase" class="mb-16">
+    <h2 class="text-fluid-h2 font-bold mb-6">Color Palette</h2>
+
+    <div class="space-y-8">
+      <div>
+        <p class="font-medium mb-4">Primary Blues</p>
+        <div class="grid grid-cols-5 md:grid-cols-10 gap-2">
+          <div class="h-16 bg-primary-50 rounded flex items-end justify-center pb-1">
+            <span class="text-xs">50</span>
+          </div>
+          <div class="h-16 bg-primary-100 rounded flex items-end justify-center pb-1">
+            <span class="text-xs">100</span>
+          </div>
+          <div class="h-16 bg-primary-200 rounded flex items-end justify-center pb-1">
+            <span class="text-xs">200</span>
+          </div>
+          <div class="h-16 bg-primary-300 rounded flex items-end justify-center pb-1">
+            <span class="text-xs">300</span>
+          </div>
+          <div class="h-16 bg-primary-400 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">400</span>
+          </div>
+          <div class="h-16 bg-primary-500 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">500</span>
+          </div>
+          <div class="h-16 bg-primary-600 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">600</span>
+          </div>
+          <div class="h-16 bg-primary-700 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">700</span>
+          </div>
+          <div class="h-16 bg-primary-800 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">800</span>
+          </div>
+          <div class="h-16 bg-primary-900 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">900</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="font-medium mb-4">Neutral Grays</p>
+        <div class="grid grid-cols-5 md:grid-cols-10 gap-2">
+          <div class="h-16 bg-neutral-50 rounded border flex items-end justify-center pb-1">
+            <span class="text-xs">50</span>
+          </div>
+          <div class="h-16 bg-neutral-100 rounded flex items-end justify-center pb-1">
+            <span class="text-xs">100</span>
+          </div>
+          <div class="h-16 bg-neutral-200 rounded flex items-end justify-center pb-1">
+            <span class="text-xs">200</span>
+          </div>
+          <div class="h-16 bg-neutral-300 rounded flex items-end justify-center pb-1">
+            <span class="text-xs">300</span>
+          </div>
+          <div class="h-16 bg-neutral-400 rounded flex items-end justify-center pb-1">
+            <span class="text-xs">400</span>
+          </div>
+          <div class="h-16 bg-neutral-500 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">500</span>
+          </div>
+          <div class="h-16 bg-neutral-600 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">600</span>
+          </div>
+          <div class="h-16 bg-neutral-700 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">700</span>
+          </div>
+          <div class="h-16 bg-neutral-800 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">800</span>
+          </div>
+          <div class="h-16 bg-neutral-900 rounded flex items-end justify-center pb-1">
+            <span class="text-xs text-white">900</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
