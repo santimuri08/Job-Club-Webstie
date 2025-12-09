@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign up for Job Club and get your personalized AI career onboarding checklist.">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Join Job Club | Job Club">
+  <meta property="og:description" content="Sign up for Job Club and get your personalized AI career onboarding checklist.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jobclub.njit.edu/join/">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Join Job Club | Job Club">
+  <meta name="twitter:description" content="Sign up for Job Club and get your personalized AI career onboarding checklist.">
+  
+  <title>Join Job Club | Job Club</title>
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <header class="navbar">
+  <nav aria-label="Main navigation">
+    <a href="/" class="logo">Job Club</a>
+    
+    <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/" >Home</a></li>
+      <li><a href="/join/" aria-current="page">Join</a></li>
+      <li><a href="/events/" >Events</a></li>
+      <li><a href="/resources/" >Resources</a></li>
+    </ul>
+    
+    <a href="/join/" class="btn btn-primary nav-cta">Get Started</a>
+  </nav>
+</header>
+  
+  <main id="main-content">
+    
+<section class="join-page">
+  <div class="container">
+    <div class="join-header">
+      <h1>Join Job Club</h1>
+      <p>Fill out this form to get your personalized onboarding checklist. We'll help you build the professional presence you need for your AI career.</p>
+    </div>
+    
+    <form id="onboarding-form" class="onboarding-form" novalidate>
+      
+      <!-- Personal Info -->
+      <fieldset>
+        <legend>Personal Information</legend>
+        
+        <div class="form-group">
+          <label for="name">Full Name <span class="required">*</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+          <span class="error-message" id="name-error" aria-live="polite"></span>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+          <span class="error-message" id="email-error" aria-live="polite"></span>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="major">Major <span class="required">*</span></label>
+            <input type="text" id="major" name="major" required placeholder="e.g., Computer Science">
+            <span class="error-message" id="major-error" aria-live="polite"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="graduation-year">Graduation Year <span class="required">*</span></label>
+            <select id="graduation-year" name="graduationYear" required>
+              <option value="">Select year</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+            </select>
+            <span class="error-message" id="graduation-year-error" aria-live="polite"></span>
+          </div>
+        </div>
+      </fieldset>
+      
+      <!-- Professional Links -->
+      <fieldset>
+        <legend>Professional Links</legend>
+        <p class="fieldset-description">These are optional but help us personalize your checklist. Don't have them yet? We'll help you set them up!</p>
+        
+        <div class="form-group">
+          <label for="linkedin">LinkedIn URL</label>
+          <input type="url" id="linkedin" name="linkedinUrl" placeholder="https://linkedin.com/in/yourname">
+          <span class="error-message" id="linkedin-error" aria-live="polite"></span>
+        </div>
+        
+        <div class="form-group">
+          <label for="github">GitHub URL</label>
+          <input type="url" id="github" name="githubUrl" placeholder="https://github.com/yourname">
+          <span class="error-message" id="github-error" aria-live="polite"></span>
+        </div>
+        
+        <div class="form-group">
+          <label for="portfolio">Portfolio URL</label>
+          <input type="url" id="portfolio" name="portfolioUrl" placeholder="https://yourportfolio.com">
+          <span class="error-message" id="portfolio-error" aria-live="polite"></span>
+        </div>
+        
+        <div class="form-group">
+          <label for="calendly">Calendly Link</label>
+          <input type="url" id="calendly" name="calendlyLink" placeholder="https://calendly.com/yourname">
+          <span class="error-message" id="calendly-error" aria-live="polite"></span>
+        </div>
+      </fieldset>
+      
+      <!-- Career Goals -->
+      <fieldset>
+        <legend>Career Goals</legend>
+        
+        <div class="form-group">
+          <label for="career-goal">What's your primary career goal? <span class="required">*</span></label>
+          <select id="career-goal" name="careerGoal" required>
+            <option value="">Select your goal</option>
+            <option value="consultant">AI Consultant</option>
+            <option value="founder">Startup Founder</option>
+            <option value="swe">Software Engineer (AI/ML)</option>
+            <option value="pm">Product Manager</option>
+            <option value="data-scientist">Data Scientist</option>
+            <option value="researcher">AI Researcher</option>
+            <option value="other">Other</option>
+          </select>
+          <span class="error-message" id="career-goal-error" aria-live="polite"></span>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="mentorshipInterest" value="yes">
+            I'm interested in mentorship opportunities
+          </label>
+        </div>
+      </fieldset>
+      
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-large">Join Job Club</button>
+      </div>
+    </form>
+    
+    <!-- Success Message (hidden by default) -->
+    <div id="success-message" class="success-message" hidden>
+      <div class="success-icon" aria-hidden="true">🎉</div>
+      <h2>Welcome to Job Club!</h2>
+      <p>Check your email for your personalized onboarding checklist.</p>
+      <p>In the meantime, join our <a href="https://discord.gg/your-invite-link" target="_blank" rel="noopener">Discord community</a> to connect with other members!</p>
+      <a href="/" class="btn btn-primary">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<script src="/js/form-validation.js"></script>
+  </main>
+  
+  <footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <p class="footer-logo">Job Club</p>
+        <p class="footer-tagline">Turn students into AI professionals</p>
+      </div>
+      
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="/privacy/">Privacy Policy</a></li>
+          <li><a href="https://discord.gg/your-invite-link" target="_blank" rel="noopener noreferrer">Discord</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <p class="copyright">&copy; 2025 Job Club. All rights reserved.</p>
+  </div>
+</footer>
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-describedby="cookie-message" hidden>
+  <div class="cookie-content">
+    <p id="cookie-message">
+      We use cookies to analyze site traffic and improve your experience. 
+      See our <a href="/privacy/">Privacy Policy</a> for details.
+    </p>
+    <div class="cookie-buttons">
+      <button id="cookie-accept" class="btn btn-primary">Accept</button>
+      <button id="cookie-reject" class="btn btn-secondary">Reject</button>
+    </div>
+  </div>
+</div>
+  
+  <script src="/js/cookie-consent.js"></script>
+</body>
+</html>
