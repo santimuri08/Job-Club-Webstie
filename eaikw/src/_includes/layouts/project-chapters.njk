@@ -1,0 +1,360 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="py-12 md:py-16 lg:py-20">
+  <div class="swiss-container">
+    {# Swiss header with asymmetric layout #}
+    <header class="swiss-grid mb-12" style="border-left: 4px solid var(--swiss-red); padding-left: var(--space-md);">
+      <div class="swiss-col-8">
+        {# Meta information as definition list #}
+        <dl class="mb-6" style="display: flex; gap: var(--space-lg); flex-wrap: wrap;">
+          {% if technologies %}
+          <div>
+            <dt class="text-xs font-bold uppercase tracking-wider mb-1" style="color: var(--swiss-gray-600);">Technologies</dt>
+            <dd class="flex gap-2 flex-wrap">
+              {% for tech in technologies %}
+              <span style="background-color: var(--swiss-gray-100); color: var(--swiss-black); padding: 0.25rem 0.75rem; font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">
+                {{ tech }}
+              </span>
+              {% endfor %}
+            </dd>
+          </div>
+          {% endif %}
+          {% if status %}
+          <div>
+            <dt class="text-xs font-bold uppercase tracking-wider mb-1" style="color: var(--swiss-gray-600);">Status</dt>
+            <dd>
+              <span style="background-color: var(--swiss-black); color: var(--swiss-white); padding: 0.25rem 0.75rem; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
+                {{ status }}
+              </span>
+            </dd>
+          </div>
+          {% endif %}
+        </dl>
+        
+        {# Title with Swiss typography #}
+        <h1 class="font-bold mb-4" style="font-size: var(--fluid-h1); line-height: 1.1; letter-spacing: -0.02em;">
+          {{ title }}
+        </h1>
+        
+        {% if description %}
+        <p style="font-size: var(--fluid-body-lg); color: var(--swiss-gray-700); max-width: 60ch; border-top: 2px solid var(--swiss-red); padding-top: var(--space-md);">
+          {{ description }}
+        </p>
+        {% endif %}
+      </div>
+    </header>
+
+    {# Structural divider #}
+    <div class="swiss-divider mb-12"></div>
+
+    {# Chapter navigation + content layout #}
+    <div class="chapters-layout">
+      {# Left sidebar navigation - 3 columns #}
+      <aside class="chapters-nav" id="chapters-nav">
+        <nav class="chapters-nav-inner">
+          <div class="chapters-nav-header">
+            <div class="chapters-header-top">
+              <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--swiss-gray-600);">Contents</span>
+              <span class="chapters-progress" id="chapters-progress">0%</span>
+            </div>
+            <div class="chapters-progress-bar">
+              <div class="chapters-progress-fill" id="chapters-progress-fill"></div>
+            </div>
+          </div>
+          <ol class="chapters-list" id="chapters-list">
+            {# Populated by JavaScript with grouped sections #}
+          </ol>
+        </nav>
+      </aside>
+
+      {# Main content - 9 columns #}
+      <div class="chapters-content">
+        <div class="prose-swiss" style="max-width: 65ch;">
+          {{ content | safe }}
+        </div>
+
+        {# Social Sharing Component #}
+        {% include "components/social-share.njk" %}
+
+        {# Chapter navigation footer #}
+        <div class="chapters-footer">
+          <div class="swiss-divider mb-8"></div>
+          <div class="chapters-nav-buttons">
+            <button class="btn-swiss" id="prev-chapter" disabled>
+              ← PREVIOUS
+            </button>
+            <button class="btn-swiss" id="next-chapter">
+              NEXT →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Project actions footer #}
+    <footer class="mt-12">
+      <div class="swiss-divider mb-8"></div>
+      
+      {# Action buttons #}
+      <div class="flex gap-4 flex-wrap">
+        {% if github %}
+        <a href="{{ github }}" target="_blank" rel="noopener noreferrer" class="btn-swiss-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          VIEW CODE
+        </a>
+        {% endif %}
+        {% if demo %}
+        <a href="{{ demo }}" target="_blank" rel="noopener noreferrer" class="btn-swiss-accent">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+          </svg>
+          LIVE DEMO
+        </a>
+        {% endif %}
+        <a href="/projects/" class="btn-swiss">← BACK TO PROJECTS</a>
+      </div>
+    </footer>
+  </div>
+</article>
+
+<style>
+  /* Chapter navigation layout */
+  .chapters-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--space-2xl);
+    position: relative;
+  }
+
+  /* Left sidebar navigation */
+  .chapters-nav {
+    position: relative;
+  }
+
+  .chapters-nav-inner {
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    border-left: 2px solid var(--swiss-gray-300);
+    padding-left: var(--space-md);
+  }
+
+  .chapters-nav-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--swiss-black);
+  }
+
+  .chapters-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .chapters-progress {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--swiss-red);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chapters-progress-bar {
+    height: 4px;
+    background-color: var(--swiss-gray-200);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chapters-progress-fill {
+    height: 100%;
+    background-color: var(--swiss-red);
+    width: 0%;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .chapters-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .chapters-list li {
+    margin-bottom: 0;
+  }
+
+  .chapters-section-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--swiss-gray-500);
+    padding: var(--space-md) var(--space-sm) var(--space-xs);
+    border-top: 1px solid var(--swiss-gray-300);
+    margin-top: var(--space-md);
+  }
+
+  .chapters-section-title:first-child {
+    border-top: none;
+    margin-top: 0;
+  }
+
+  .chapters-list a {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-xs);
+    padding: var(--space-sm);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--swiss-gray-700);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .chapters-list a:hover {
+    color: var(--swiss-black);
+    border-left-color: var(--swiss-gray-600);
+    background-color: var(--swiss-gray-50);
+    transform: translateX(2px);
+  }
+
+  .chapters-list a.active {
+    color: var(--swiss-black);
+    font-weight: 700;
+    border-left-color: var(--swiss-red);
+    background-color: var(--swiss-gray-100);
+  }
+
+  .chapters-list a.active .chapter-number {
+    color: var(--swiss-red);
+  }
+
+  .chapter-number {
+    flex-shrink: 0;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--swiss-gray-500);
+    font-variant-numeric: tabular-nums;
+    min-width: 1.75em;
+    text-align: right;
+  }
+
+  .chapter-title {
+    flex: 1;
+  }
+
+  .chapter-time {
+    flex-shrink: 0;
+    font-size: 0.6875rem;
+    color: var(--swiss-gray-400);
+    font-weight: 400;
+    margin-left: auto;
+    padding-left: var(--space-xs);
+  }
+
+  .chapters-list a.active .chapter-time {
+    color: var(--swiss-gray-600);
+    font-weight: 500;
+  }
+
+  /* Chapter content */
+  .chapters-content {
+    min-width: 0;
+  }
+
+  /* Chapter sections */
+  .prose-swiss h2[id] {
+    scroll-margin-top: 100px;
+  }
+
+  /* Chapter navigation footer */
+  .chapters-footer {
+    margin-top: var(--space-3xl);
+  }
+
+  .chapters-nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .chapters-nav-buttons button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .chapters-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .chapters-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--swiss-white);
+      border-bottom: 2px solid var(--swiss-black);
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .chapters-nav.open {
+      transform: translateY(0);
+    }
+
+    .chapters-nav-inner {
+      position: static;
+      max-height: 60vh;
+      padding: var(--space-md);
+      border-left: none;
+    }
+
+    /* Mobile toggle button */
+    .chapters-toggle {
+      position: fixed;
+      top: 80px;
+      right: var(--space-md);
+      z-index: 1001;
+      background: var(--swiss-black);
+      color: var(--swiss-white);
+      border: none;
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+    }
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .chapters-nav-inner::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .chapters-nav-inner::-webkit-scrollbar-track {
+    background: var(--swiss-gray-100);
+  }
+
+  .chapters-nav-inner::-webkit-scrollbar-thumb {
+    background: var(--swiss-gray-400);
+  }
+
+  .chapters-nav-inner::-webkit-scrollbar-thumb:hover {
+    background: var(--swiss-gray-600);
+  }
+</style>
+
+<script src="/js/chapters-nav.bundle.js" defer></script>

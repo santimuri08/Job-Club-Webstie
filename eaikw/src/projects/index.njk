@@ -1,0 +1,161 @@
+---
+layout: layouts/base.njk
+title: Projects
+description: A showcase of my work and portfolio pieces
+---
+
+{% import "components/card.njk" as card %}
+
+{# Advanced Swiss interactions #}
+<script src="/js/projects-enhanced.bundle.js" defer></script>
+
+<section style="padding-top: var(--space-3xl); padding-bottom: var(--space-5xl);">
+  <div style="max-width: 1440px; margin: 0 auto; padding-left: var(--swiss-grid-margin); padding-right: var(--swiss-grid-margin);">
+    {# Swiss header - ASYMMETRIC, compact, efficient #}
+    <div class="swiss-grid" style="margin-bottom: var(--space-3xl);">
+      {# Left: Title + Label #}
+      <div class="swiss-col-12 md:swiss-col-7">
+        <div style="border-left: 3px solid var(--swiss-black); padding-left: var(--space-lg); margin-bottom: var(--space-lg);">
+          <p class="text-xs uppercase tracking-widest font-bold" style="color: var(--swiss-gray-600); letter-spacing: 0.2em;">
+            02 — PORTFOLIO
+          </p>
+        </div>
+        <h1 class="font-black" style="font-size: var(--fluid-display); line-height: 0.95; letter-spacing: -0.03em;">
+          {{ title }}
+        </h1>
+        <div style="width: 60px; height: 2px; background-color: var(--swiss-red); margin-top: var(--space-lg);"></div>
+      </div>
+      
+      {# Right: Description aligned to title baseline #}
+      <div class="swiss-col-12 md:swiss-col-5" style="padding-top: var(--space-4xl);">
+        <p class="text-lg leading-relaxed" style="color: var(--swiss-gray-700);">
+          {{ description }}
+        </p>
+      </div>
+    </div>
+    
+    {% if collections.projects.length > 0 %}
+    {# Swiss grid - ADVANCED: 3 columns on XL, 2 on MD, 1 on mobile with staggered heights #}
+    <div id="projects-grid" class="projects-grid-advanced" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: var(--space-xl); margin-bottom: var(--space-2xl);">
+      {% for project in collections.projects %}
+      <article 
+        data-project-card
+        data-index="{{ loop.index }}"
+        class="project-card group relative" 
+        style="
+          border: 2px solid var(--swiss-black); 
+          background-color: var(--swiss-white); 
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          opacity: 0;
+          transform: translateY(30px);
+          overflow: hidden;
+        ">
+        
+        {# Geometric overlay on hover - SWISS INNOVATION #}
+        <div class="project-overlay" style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 120px;
+          height: 120px;
+          background-color: var(--swiss-red);
+          opacity: 0;
+          transform: translate(60px, -60px) rotate(45deg);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          pointer-events: none;
+          z-index: 1;
+        "></div>
+        
+        {# Project number - ANIMATED #}
+        <div style="padding: var(--space-2xl) var(--space-2xl) 0 var(--space-2xl); position: relative; z-index: 2;">
+          <span class="project-number font-black" style="
+            font-size: var(--fluid-h1); 
+            color: var(--swiss-gray-200); 
+            line-height: 1;
+            display: block;
+            transition: all 0.4s ease;
+          ">
+            {{ ('0' + loop.index) if loop.index < 10 else loop.index }}
+          </span>
+        </div>
+        
+        {# Project content #}
+        <div style="padding: var(--space-lg) var(--space-2xl) var(--space-2xl) var(--space-2xl); position: relative; z-index: 2;">
+          <h2 class="project-title font-bold uppercase" style="
+            font-size: var(--fluid-h3); 
+            line-height: 1.2; 
+            letter-spacing: 0.05em; 
+            margin-bottom: var(--space-lg);
+            transition: transform 0.3s ease;
+          ">
+            <a href="{{ project.url }}" style="text-decoration: none; color: var(--swiss-black);" class="group-hover:opacity-70 transition-opacity">
+              {{ project.data.title }}
+            </a>
+          </h2>
+          
+          {# Red accent bar - ANIMATED WIDTH #}
+          <div class="project-accent-bar" style="
+            width: 48px; 
+            height: 2px; 
+            background-color: var(--swiss-red); 
+            margin-bottom: var(--space-lg);
+            transition: width 0.4s ease;
+          "></div>
+          
+          {% if project.data.description %}
+          <p class="leading-relaxed" style="color: var(--swiss-gray-700); margin-bottom: var(--space-xl);">
+            {{ project.data.description }}
+          </p>
+          {% endif %}
+          
+          {# Tech stack as definition list #}
+          {% if project.data.tags %}
+          <dl style="margin-bottom: var(--space-xl);">
+            <dt class="text-xs font-bold uppercase tracking-widest" style="color: var(--swiss-gray-600); margin-bottom: var(--space-sm); letter-spacing: 0.15em;">
+              Technologies
+            </dt>
+            <dd class="flex flex-wrap" style="gap: var(--space-xs);">
+              {% for tag in project.data.tags %}
+              <span class="project-tag text-xs uppercase tracking-wider font-bold" style="
+                color: var(--swiss-black); 
+                border: 1px solid var(--swiss-black); 
+                padding: 0.25rem 0.75rem;
+                transition: all 0.2s ease;
+              ">
+                {{ tag }}
+              </span>
+              {% endfor %}
+            </dd>
+          </dl>
+          {% endif %}
+          
+          {# Swiss button - ENHANCED #}
+          <a href="{{ project.url }}" class="project-cta inline-flex items-center gap-2 font-bold uppercase tracking-wider text-sm transition-all" style="color: var(--swiss-black);">
+            View Project
+            <svg class="project-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.3s ease;">
+              <path d="M5 10h10M10 5l5 5-5 5" stroke-linecap="square"/>
+            </svg>
+          </a>
+        </div>
+        
+        {# Hover effect border - ENHANCED #}
+        <div class="absolute inset-0 border-4 border-transparent transition-all pointer-events-none" style="margin: -2px;"></div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    {# Swiss empty state #}
+    <div style="border: 2px solid var(--swiss-black); padding: var(--space-5xl); text-align: center;">
+      <p class="text-xs uppercase tracking-widest font-bold" style="color: var(--swiss-gray-600); margin-bottom: var(--space-xl); letter-spacing: 0.15em;">
+        Coming Soon
+      </p>
+      <h2 class="font-bold" style="font-size: var(--fluid-h3); margin-bottom: var(--space-lg);">
+        No Projects Yet
+      </h2>
+      <p class="leading-relaxed" style="color: var(--swiss-gray-700);">
+        Portfolio projects will be showcased here.
+      </p>
+    </div>
+    {% endif %}
+  </div>
+</section>

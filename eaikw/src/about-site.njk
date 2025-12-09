@@ -1,0 +1,242 @@
+---
+layout: layouts/base.njk
+title: About this Site
+description: Learn about the design philosophy, technology stack, and Swiss design principles behind this portfolio website
+---
+
+<article class="py-12 md:py-16 lg:py-20">
+  <div style="max-width: 1440px; margin: 0 auto; padding-left: var(--swiss-grid-margin); padding-right: var(--swiss-grid-margin);">
+    {# Swiss header with asymmetric layout #}
+    <header class="swiss-grid mb-12" style="border-left: 4px solid var(--swiss-red); padding-left: var(--space-md);">
+      <div class="swiss-col-8">
+        <p class="text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--swiss-gray-600);">05 — META</p>
+        <h1 class="font-bold mb-4" style="font-size: var(--fluid-display); line-height: 1.1; letter-spacing: -0.02em;">{{ title }}</h1>
+        <p class="text-lg" style="color: var(--swiss-gray-700); max-width: 60ch; border-top: 2px solid var(--swiss-red); padding-top: var(--space-md);">
+          {{ description }}
+        </p>
+      </div>
+    </header>
+
+    {# Structural divider #}
+    <div class="swiss-divider mb-12"></div>
+
+    {# Design Philosophy Section #}
+    <section class="swiss-grid mb-16">
+      <div class="swiss-col-8">
+        <div class="prose-swiss">
+          <h2>Design Philosophy</h2>
+          <p>This portfolio embraces the principles of <strong>Swiss Design</strong> (International Typographic Style), a movement that emerged in Switzerland in the 1950s. It emphasizes cleanliness, readability, and objectivity through mathematical grids, sans-serif typography, and asymmetric layouts.</p>
+          
+          <h3>Core Principles Applied</h3>
+          <ul>
+            <li><strong>Mathematical Grid System</strong> — 12-column precision grid with 1.5rem gutters for perfect alignment</li>
+            <li><strong>Dramatic Typography</strong> — Golden Ratio (1.618) scale from 6rem display to 0.75rem caption</li>
+            <li><strong>Minimal Color Palette</strong> — Black, white, and Swiss red as accent, plus 9-step grayscale</li>
+            <li><strong>Asymmetric Layouts</strong> — 7:5 and 8:4 column splits create visual tension</li>
+            <li><strong>Structural Lines</strong> — 2-4px borders as functional design elements</li>
+            <li><strong>Definition Lists</strong> — Structured data presentation for metadata</li>
+            <li><strong>No Decoration</strong> — Elimination of shadows, rounded corners, and gradients</li>
+            <li><strong>Functional Beauty</strong> — Every element serves a clear purpose</li>
+          </ul>
+
+          <h3>Swiss Masters Inspiration</h3>
+          <p>The design philosophy draws from pioneering designers:</p>
+          <ul>
+            <li><strong>Josef Müller-Brockmann</strong> — Mathematical grids and objective design</li>
+            <li><strong>Armin Hofmann</strong> — Geometric precision and visual tension</li>
+            <li><strong>Jan Tschichold</strong> — Typographic excellence and asymmetric layouts</li>
+            <li><strong>Emil Ruder</strong> — Grid systems and rational beauty</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {# Technology Stack Section #}
+    <div class="swiss-divider mb-12"></div>
+    
+    <section class="swiss-grid mb-16">
+      <div class="swiss-col-8">
+        <div class="prose-swiss">
+          <h2>Technology Stack</h2>
+          
+          <h3>Core Technologies</h3>
+          <dl style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); margin: 2rem 0;">
+            <div style="border-left: 2px solid var(--swiss-black); padding-left: var(--space-md);">
+              <dt class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--swiss-gray-600);">Static Site Generator</dt>
+              <dd class="font-bold" style="font-size: var(--fluid-h4);">Eleventy 3.1.2</dd>
+              <dd class="text-sm mt-2" style="color: var(--swiss-gray-700);">Fast, flexible, and powerful static site generation with zero client-side JavaScript overhead</dd>
+            </div>
+            
+            <div style="border-left: 2px solid var(--swiss-black); padding-left: var(--space-md);">
+              <dt class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--swiss-gray-600);">Templating Engine</dt>
+              <dd class="font-bold" style="font-size: var(--fluid-h4);">Nunjucks</dd>
+              <dd class="text-sm mt-2" style="color: var(--swiss-gray-700);">Powerful templating with macros, inheritance, and includes for maintainable code</dd>
+            </div>
+            
+            <div style="border-left: 2px solid var(--swiss-black); padding-left: var(--space-md);">
+              <dt class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--swiss-gray-600);">CSS Framework</dt>
+              <dd class="font-bold" style="font-size: var(--fluid-h4);">Tailwind CSS 3.4</dd>
+              <dd class="text-sm mt-2" style="color: var(--swiss-gray-700);">Utility-first framework extended with custom Swiss design components and typography</dd>
+            </div>
+            
+            <div style="border-left: 2px solid var(--swiss-black); padding-left: var(--space-md);">
+              <dt class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--swiss-gray-600);">Interactivity</dt>
+              <dd class="font-bold" style="font-size: var(--fluid-h4);">Alpine.js</dd>
+              <dd class="text-sm mt-2" style="color: var(--swiss-gray-700);">Lightweight JavaScript for mobile menu and interactive components</dd>
+            </div>
+          </dl>
+
+          <h3>Development Tools</h3>
+          <ul>
+            <li><strong>Node.js</strong> — JavaScript runtime environment</li>
+            <li><strong>npm-run-all</strong> — Parallel script execution for build processes</li>
+            <li><strong>Git</strong> — Version control and collaboration</li>
+            <li><strong>GitHub Pages</strong> — Automated deployment and hosting</li>
+          </ul>
+
+          <h3>Typography</h3>
+          <p>The site uses <strong>Inter</strong>, a carefully crafted typeface optimized for user interfaces and digital screens. Its Helvetica-inspired design makes it the perfect modern substitute for Swiss design's traditional typography.</p>
+        </div>
+      </div>
+    </section>
+
+    {# Features Section #}
+    <div class="swiss-divider mb-12"></div>
+    
+    <section class="swiss-grid mb-16">
+      <div class="swiss-col-8">
+        <div class="prose-swiss">
+          <h2>Key Features</h2>
+
+          <h3>Swiss Grid System</h3>
+          <p>Custom 12-column mathematical grid with precise gutters:</p>
+          <ul>
+            <li>Desktop: 12 columns with 1.5rem (24px) gutters</li>
+            <li>Tablet: 8 columns with responsive scaling</li>
+            <li>Mobile: 4 columns for optimal readability</li>
+            <li>Swiss grid classes: <code>.swiss-grid</code>, <code>.swiss-col-1</code> through <code>.swiss-col-12</code></li>
+          </ul>
+
+          <h3>Fluid Typography</h3>
+          <p>Responsive typography using CSS <code>clamp()</code> for perfect scaling across devices:</p>
+          <ul>
+            <li><code>--fluid-display</code>: 3rem → 6rem (massive headlines)</li>
+            <li><code>--fluid-h1</code>: 2.5rem → 4.5rem</li>
+            <li><code>--fluid-h2</code>: 2rem → 3rem</li>
+            <li><code>--fluid-h3</code>: 1.5rem → 2rem</li>
+            <li>Golden Ratio (1.618) scale for dramatic hierarchy</li>
+          </ul>
+
+          <h3>Swiss Color System</h3>
+          <p>Minimal palette with CSS custom properties:</p>
+          <ul>
+            <li><code>--swiss-black</code>: #000000 (primary text)</li>
+            <li><code>--swiss-white</code>: #FFFFFF (backgrounds)</li>
+            <li><code>--swiss-red</code>: #E53E3E (accent, used sparingly)</li>
+            <li>9-step grayscale from gray-100 to gray-900</li>
+          </ul>
+
+          <h3>Performance Optimizations</h3>
+          <ul>
+            <li><strong>Static Generation</strong> — Pre-rendered HTML for instant loading</li>
+            <li><strong>Minimal JavaScript</strong> — Only Alpine.js for mobile menu (~15KB gzipped)</li>
+            <li><strong>CSS Purging</strong> — Tailwind removes unused styles in production</li>
+            <li><strong>View Transitions API</strong> — Smooth page navigation</li>
+            <li><strong>Lazy Loading</strong> — Images load only when visible</li>
+            <li><strong>Web Vitals Monitoring</strong> — Performance tracking built-in</li>
+          </ul>
+
+          <h3>Accessibility Features</h3>
+          <ul>
+            <li><strong>WCAG Compliant</strong> — 44x44px minimum touch targets</li>
+            <li><strong>Semantic HTML</strong> — Proper heading hierarchy and landmarks</li>
+            <li><strong>Focus States</strong> — Clear keyboard navigation indicators</li>
+            <li><strong>ARIA Labels</strong> — Screen reader support for navigation</li>
+            <li><strong>Definition Lists</strong> — Structured data for assistive technology</li>
+          </ul>
+
+          <h3>Swiss Components</h3>
+          <p>Custom-built components following Swiss principles:</p>
+          <ul>
+            <li><code>.btn-swiss</code> — Outlined button with 2px border</li>
+            <li><code>.btn-swiss-primary</code> — Black background, white text</li>
+            <li><code>.btn-swiss-accent</code> — Red background for emphasis</li>
+            <li><code>.swiss-divider</code> — 3px structural line separator</li>
+            <li><code>.prose-swiss</code> — Comprehensive typography for content</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {# Build Process Section #}
+    <div class="swiss-divider mb-12"></div>
+    
+    <section class="swiss-grid mb-16">
+      <div class="swiss-col-8">
+        <div class="prose-swiss">
+          <h2>Build Process</h2>
+
+          <h3>Development Workflow</h3>
+          <p>The site uses a parallel build process for optimal development experience:</p>
+          
+          <ol>
+            <li><strong>CSS Compilation</strong> — Tailwind processes custom CSS with Swiss components</li>
+            <li><strong>JavaScript Bundling</strong> — Alpine.js is bundled for production</li>
+            <li><strong>Template Processing</strong> — Nunjucks templates compile to static HTML</li>
+            <li><strong>Live Reload</strong> — Dev server watches for changes and auto-refreshes</li>
+          </ol>
+
+          <h3>Production Build</h3>
+          <p>Optimized output for deployment:</p>
+          <ul>
+            <li>Minified CSS with purged unused styles</li>
+            <li>Compressed JavaScript bundle</li>
+            <li>Static HTML files ready for CDN delivery</li>
+            <li>RSS feed for blog subscriptions</li>
+            <li>XML sitemap for SEO</li>
+            <li>robots.txt for search engine guidelines</li>
+          </ul>
+
+          <h3>Deployment</h3>
+          <p>Automated GitHub Actions workflow:</p>
+          <ul>
+            <li>Push to <code>main</code> branch triggers build</li>
+            <li>Eleventy generates static site</li>
+            <li>Files deploy to GitHub Pages</li>
+            <li>Available within seconds at custom domain</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {# Design Resources Section #}
+    <div class="swiss-divider mb-12"></div>
+    
+    <section class="swiss-grid mb-16">
+      <div class="swiss-col-8">
+        <div class="prose-swiss">
+          <h2>Design Resources</h2>
+
+          <h3>Further Reading</h3>
+          <p>To learn more about Swiss Design and the International Typographic Style:</p>
+          <ul>
+            <li><em>Grid Systems in Graphic Design</em> by Josef Müller-Brockmann</li>
+            <li><em>Graphic Design Manual</em> by Armin Hofmann</li>
+            <li><em>The New Typography</em> by Jan Tschichold</li>
+            <li><em>Typography</em> by Emil Ruder</li>
+          </ul>
+
+          <h3>Quote from Josef Müller-Brockmann</h3>
+          <blockquote>
+            "The grid system is an aid, not a guarantee. It permits a number of possible uses and each designer can look for a solution appropriate to their personal style. But one must learn how to use the grid; it is an art that requires practice."
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    {# Back Link #}
+    <footer>
+      <a href="/" class="btn-swiss-primary">← BACK TO HOME</a>
+    </footer>
+  </div>
+</article>

@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background -->
+  <rect width="1200" height="630" fill="#000000"/>
+  
+  <!-- Red accent bar (Swiss design element) -->
+  <rect x="0" y="0" width="8" height="630" fill="#E02020"/>
+  
+  <!-- Main title - EverydayAI -->
+  <text x="100" y="280" font-family="Helvetica, Arial, sans-serif" font-size="120" font-weight="700" fill="#FFFFFF" letter-spacing="-0.02em">
+    EverydayAI
+  </text>
+  
+  <!-- Subtitle - Community -->
+  <text x="100" y="360" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="300" fill="#E02020" letter-spacing="0.1em">
+    COMMUNITY
+  </text>
+  
+  <!-- Tagline -->
+  <text x="100" y="450" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="400" fill="#999999" letter-spacing="0.05em">
+    Making AI Accessible for Everyone
+  </text>
+  
+  <!-- URL -->
+  <text x="100" y="550" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF" letter-spacing="0.05em">
+    eaikw.com
+  </text>
+  
+  <!-- Swiss grid element (decorative) -->
+  <rect x="950" y="100" width="150" height="430" fill="none" stroke="#E02020" stroke-width="2"/>
+  <line x1="950" y1="265" x2="1100" y2="265" stroke="#E02020" stroke-width="2"/>
+</svg>
