@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+title: Resources
+description: Guides and resources to help you build your AI career.
+permalink: /resources/
+---
+
+<section class="resources-page">
+  <div class="container">
+    <div class="page-header">
+      <h1>Resources</h1>
+      <p>Guides, templates, and resources to help you build your professional presence and AI skills.</p>
+    </div>
+    
+    <div class="resources-grid">
+      {% for resource in resources %}
+        {% include "components/resource-card.njk" %}
+      {% else %}
+        <p class="no-resources">Resources coming soon!</p>
+      {% endfor %}
+    </div>
+    
+    <section class="portfolio-guidance">
+      <h2>Build Your Portfolio</h2>
+      <p>A strong portfolio is essential for landing AI jobs. Check out this <a href="https://kaw393939.github.io/117_final_fall_2025/portfolio/" target="_blank" rel="noopener">model portfolio</a> for inspiration.</p>
+      
+      <div class="checklist-card">
+        <h3>Portfolio Checklist</h3>
+        <ul class="checklist">
+          <li>Professional headshot</li>
+          <li>Clear value proposition / tagline</li>
+          <li>3+ projects with descriptions</li>
+          <li>Skills section with technologies</li>
+          <li>Contact information</li>
+          <li>LinkedIn profile link</li>
+          <li>GitHub profile with activity</li>
+          <li>Downloadable resume (PDF)</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</section>
