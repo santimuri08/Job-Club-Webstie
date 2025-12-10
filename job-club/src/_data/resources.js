@@ -1,26 +1,40 @@
-const { getAllResources, getFeaturedResources } = require('../lib/api/resources')
-const { getAllCategories } = require('../lib/api/categories')
-
-module.exports = async function() {
-  const { data: all, error: allError } = await getAllResources(20)
-  const { data: featured, error: featuredError } = await getFeaturedResources(6)
-  const { data: categories, error: categoriesError } = await getAllCategories()
-  
-  if (allError) {
-    console.error('Error fetching all resources:', allError)
-  }
-  
-  if (featuredError) {
-    console.error('Error fetching featured resources:', featuredError)
-  }
-  
-  if (categoriesError) {
-    console.error('Error fetching categories:', categoriesError)
-  }
-  
+// Static data for now - will be replaced with Sanity data once configured
+module.exports = function() {
   return {
-    all: all || [],
-    featured: featured || [],
-    categories: categories || []
+    all: [
+      {
+        title: "How to Build a Professional Portfolio",
+        description: "Step-by-step guide to creating an impressive tech portfolio",
+        category: "Career Development",
+        url: "#"
+      },
+      {
+        title: "LinkedIn Optimization Guide",
+        description: "Make your LinkedIn profile stand out to recruiters",
+        category: "Personal Branding",
+        url: "#"
+      },
+      {
+        title: "GitHub Best Practices",
+        description: "How to use GitHub effectively for projects",
+        category: "Technical Skills",
+        url: "#"
+      }
+    ],
+    featured: [
+      {
+        title: "AI Consulting Portfolio Starter Guide",
+        description: "Everything you need to start your AI consulting portfolio",
+        category: "AI/ML",
+        url: "#",
+        featured: true
+      }
+    ],
+    categories: [
+      { title: "Career Development", slug: "career" },
+      { title: "Technical Skills", slug: "technical" },
+      { title: "AI/ML", slug: "ai-ml" },
+      { title: "Personal Branding", slug: "branding" }
+    ]
   }
 }
