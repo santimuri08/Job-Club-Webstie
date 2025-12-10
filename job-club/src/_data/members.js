@@ -1,19 +1,27 @@
-const { getMembersByStatus } = require('../lib/api/members')
-
-module.exports = async function() {
-  const { data: active, error: activeError } = await getMembersByStatus('active', 10)
-  const { data: newMembers, error: newMembersError } = await getMembersByStatus('new', 5)
-  
-  if (activeError) {
-    console.error('Error fetching active members:', activeError)
-  }
-  
-  if (newMembersError) {
-    console.error('Error fetching new members:', newMembersError)
-  }
-  
+// Static data for now - will be replaced with Sanity data once configured
+module.exports = function() {
   return {
-    active: active || [],
-    new: newMembers || []
+    active: [
+      {
+        name: "Alex Johnson",
+        role: "Software Engineer",
+        bio: "Full-stack developer with a passion for AI",
+        image: "/images/members/alex.jpg"
+      },
+      {
+        name: "Sarah Chen",
+        role: "Product Manager",
+        bio: "Building products that make a difference",
+        image: "/images/members/sarah.jpg"
+      }
+    ],
+    new: [
+      {
+        name: "Mike Davis",
+        role: "Data Scientist",
+        bio: "Just joined, excited to learn!",
+        image: "/images/members/mike.jpg"
+      }
+    ]
   }
 }

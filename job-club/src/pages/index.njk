@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.njk
+layout: base
 title: Home
 description: Turn students into career-ready AI professionals with personalized onboarding, events, and resources.
 permalink: /
@@ -67,7 +67,7 @@ permalink: /
   <div class="container">
     <h2>Upcoming Events</h2>
     <div class="events-grid stagger-fade-in">
-      {% for event in events | limit(3) %}
+      {% for event in events.upcoming %}
         {% include "components/event-card.njk" %}
       {% endfor %}
     </div>
@@ -84,12 +84,3 @@ permalink: /
     <a href="/join/" class="btn btn-primary btn-large">Get Started Today</a>
   </div>
 </section>
-```
-
----
-
-## Don't Forget the Image!
-
-Save your NJIT campus image to:
-```
-src/assets/images/hero-bg.jpg
