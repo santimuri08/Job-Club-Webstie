@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ description or site.description }}">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="{{ title }} | {{ site.title }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="website">
+  
+  <title>{{ title }} | {{ site.title }}</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  
+  <!-- Page Header -->
+  <header class="page-header">
+    <!-- Logo goes to Introduction (big cube) at root -->
+    <a href="/" class="logo">Job <span>Club</span></a>
+    
+    <div class="header-right">
+      <span class="header-eyebrow">NJIT AI CAREER ACCELERATOR</span>
+      
+      <!-- Mini Cube Navigation -->
+      <nav class="cube-nav-mini" aria-label="Main navigation">
+        <button class="cube-nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+          <div class="mini-cube-icon">
+            <div class="mini-face mini-front"></div>
+            <div class="mini-face mini-back"></div>
+            <div class="mini-face mini-right"></div>
+            <div class="mini-face mini-left"></div>
+            <div class="mini-face mini-top"></div>
+            <div class="mini-face mini-bottom"></div>
+          </div>
+        </button>
+        
+        <div class="cube-nav-menu" id="nav-menu">
+          <!-- Home goes to /home/ (main homepage with video) -->
+          <a href="/home/" class="nav-menu-item {% if pageId == 'home' %}active{% endif %}" data-page="home">
+            <span class="nav-icon">🏠</span> Home
+          </a>
+          <a href="/events/" class="nav-menu-item {% if pageId == 'events' %}active{% endif %}" data-page="events">
+            <span class="nav-icon">📅</span> Events
+          </a>
+          <a href="/resources/" class="nav-menu-item {% if pageId == 'resources' %}active{% endif %}" data-page="resources">
+            <span class="nav-icon">📚</span> Resources
+          </a>
+          <a href="/join/" class="nav-menu-item {% if pageId == 'join' %}active{% endif %}" data-page="join">
+            <span class="nav-icon">🚀</span> Join
+          </a>
+          <a href="/privacy/" class="nav-menu-item {% if pageId == 'privacy' %}active{% endif %}" data-page="privacy">
+            <span class="nav-icon">🔒</span> Privacy
+          </a>
+          <div class="nav-menu-divider"></div>
+          <!-- Introduction (big cube) at root -->
+          <a href="/" class="nav-menu-item {% if pageId == 'intro' %}active{% endif %}" data-page="intro">
+            <span class="nav-icon">✦</span> Introduction
+          </a>
+          <a href="{{ site.discord }}" class="nav-menu-item nav-back" target="_blank" rel="noopener">
+            <span class="nav-icon">💬</span> Discord
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+    {{ content | safe }}
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="copyright">© 2025 Job Club - NJIT AI Career Accelerator. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="page-transition">
+    <div class="transition-cube">
+      <div class="transition-face"></div>
+    </div>
+    <div class="transition-info">
+      <span class="transition-icon" id="transition-icon">✦</span>
+      <span class="transition-title" id="transition-title">HOME</span>
+    </div>
+  </div>
+  
+  <script src="/js/cube-nav.js"></script>
+</body>
+</html>

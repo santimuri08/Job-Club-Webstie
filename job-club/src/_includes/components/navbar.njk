@@ -1,0 +1,21 @@
+<header class="navbar">
+  <nav aria-label="Main navigation">
+    <a href="/" class="logo">
+      <span class="logo-text">Job Club</span>
+    </a>
+    
+    <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" id="mobile-menu-btn">
+      <span class="hamburger"></span>
+    </button>
+    
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Intro</a></li>
+      <li><a href="/home/" {% if page.url == "/home/" %}aria-current="page"{% endif %}>Home</a></li>
+      <li><a href="/join/" {% if page.url == "/join/" %}aria-current="page"{% endif %}>Join</a></li>
+      <li><a href="/events/" {% if page.url == "/events/" %}aria-current="page"{% endif %}>Events</a></li>
+      <li><a href="/resources/" {% if page.url == "/resources/" %}aria-current="page"{% endif %}>Resources</a></li>
+    </ul>
+    
+    <a href="/join/" class="btn btn-primary nav-cta">Get Started</a>
+  </nav>
+</header>

@@ -1,0 +1,77 @@
+---
+layout: layouts/base.njk
+title: Resources
+description: Curated resources to help you build your AI career - tutorials, tools, templates, and more.
+permalink: /resources/
+pageId: resources
+---
+
+<section class="page-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Learn & Grow</span>
+      <h1 class="section-title">Resources</h1>
+      <p class="section-subtitle">Curated resources to help you build your AI career - tutorials, tools, templates, and more.</p>
+    </div>
+    
+    <div class="grid grid-3">
+      {% for resource in resources %}
+      <div class="resource-card">
+        <span class="resource-category">{{ resource.category }}</span>
+        <h3 class="resource-title">{{ resource.title }}</h3>
+        <p class="resource-description">{{ resource.description }}</p>
+        <a href="{{ resource.url }}" class="resource-link" target="_blank" rel="noopener">
+          View Resource →
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Resource Categories -->
+<section class="page-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-eyebrow">Browse by Category</span>
+      <h2 class="section-title">Find What You Need</h2>
+    </div>
+    
+    <div class="grid grid-4">
+      <div class="step-card">
+        <div class="step-number">📚</div>
+        <h3 class="step-title">Learning</h3>
+        <p class="step-description">Courses, tutorials, and guides to build your AI skills.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">🛠️</div>
+        <h3 class="step-title">Tools</h3>
+        <p class="step-description">Software and platforms to boost your productivity.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">📝</div>
+        <h3 class="step-title">Templates</h3>
+        <p class="step-description">Resume, portfolio, and project templates.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">💼</div>
+        <h3 class="step-title">Career</h3>
+        <p class="step-description">Job boards, interview prep, and networking tips.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="page-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-eyebrow">Have a Resource?</span>
+      <h2 class="section-title">Contribute to the Community</h2>
+      <p class="section-subtitle">Know a great resource that should be here? Let us know!</p>
+      <div style="margin-top: 2rem;">
+        <a href="/join/" class="btn btn-primary btn-large">Join & Suggest →</a>
+      </div>
+    </div>
+  </div>
+</section>
