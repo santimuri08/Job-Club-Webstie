@@ -1,0 +1,152 @@
+---
+layout: layouts/intro.njk
+title: Welcome
+description: Discover Job Club - Your gateway to an AI career at NJIT.
+permalink: /
+pageId: intro
+---
+
+<section class="intro-hero">
+  <!-- Animated Background -->
+  <canvas id="particle-canvas" class="particle-bg"></canvas>
+  
+  <div class="intro-container">
+    
+    <!-- Interactive 3D Cube -->
+    <div class="cube-wrapper">
+      <div class="cube-scene">
+        <div class="cube" id="intro-cube">
+          <!-- Front Face - Home -->
+          <div class="cube-face cube-front" data-face="front">
+            <div class="face-content">
+              <div class="face-icon-svg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </div>
+              <h3>Home</h3>
+              <p>Your AI career starts here</p>
+            </div>
+          </div>
+          <!-- Back Face - Community -->
+          <div class="cube-face cube-back" data-face="back">
+            <div class="face-content">
+              <div class="face-icon-svg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3>Community</h3>
+              <p>Join 200+ NJIT students</p>
+            </div>
+          </div>
+          <!-- Right Face - Events -->
+          <div class="cube-face cube-right" data-face="right">
+            <div class="face-content">
+              <div class="face-icon-svg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                  <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+                </svg>
+              </div>
+              <h3>Events</h3>
+              <p>Workshops & networking</p>
+            </div>
+          </div>
+          <!-- Left Face - Resources -->
+          <div class="cube-face cube-left" data-face="left">
+            <div class="face-content">
+              <div class="face-icon-svg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  <line x1="8" y1="6" x2="16" y2="6"></line>
+                  <line x1="8" y1="10" x2="14" y2="10"></line>
+                </svg>
+              </div>
+              <h3>Resources</h3>
+              <p>Tools & tutorials</p>
+            </div>
+          </div>
+          <!-- Top Face - Career -->
+          <div class="cube-face cube-top" data-face="top">
+            <div class="face-content">
+              <div class="face-icon-svg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                  <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                </svg>
+              </div>
+              <h3>Career</h3>
+              <p>Launch your AI journey</p>
+            </div>
+          </div>
+          <!-- Bottom Face - Learn -->
+          <div class="cube-face cube-bottom" data-face="bottom">
+            <div class="face-content">
+              <div class="face-icon-svg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                </svg>
+              </div>
+              <h3>Learn</h3>
+              <p>Build real-world skills</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cube Instructions - NO ICON -->
+      <p class="cube-instructions">Drag to explore</p>
+    </div>
+    
+    <!-- Info Panel -->
+    <div class="intro-info">
+      <span class="intro-eyebrow">NJIT AI CAREER ACCELERATOR</span>
+      <h1 class="intro-title">Welcome to <span class="gradient-text">Job Club</span></h1>
+      <p class="intro-description">
+        Turn your potential into AI career power. We help NJIT students build portfolios, 
+        land interviews, and launch careers in artificial intelligence.
+      </p>
+      
+      <!-- Face Info Display -->
+      <div class="face-info" id="face-info">
+        <div class="face-info-icon" id="face-info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </div>
+        <div class="face-info-text">
+          <h4 id="face-info-title">Home</h4>
+          <p id="face-info-desc">Your central hub for everything AI career related at NJIT.</p>
+        </div>
+      </div>
+      
+      <!-- Get Started Button -->
+      <a href="/home/" class="btn btn-primary btn-large btn-glow">
+        Get Started
+        <svg class="btn-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<script src="/js/particles.js"></script>
+<script src="/js/intro-cube.js"></script>
