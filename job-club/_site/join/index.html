@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign up for Job Club and get your personalized AI career onboarding checklist.">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Join | Job Club">
+  <meta property="og:description" content="Sign up for Job Club and get your personalized AI career onboarding checklist.">
+  <meta property="og:type" content="website">
+  
+  <title>Join | Job Club</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  
+  <!-- Page Header -->
+  <header class="page-header">
+    <!-- Logo goes to Introduction (big cube) at root -->
+    <a href="/" class="logo">Job <span>Club</span></a>
+    
+    <div class="header-right">
+      <span class="header-eyebrow">NJIT AI CAREER ACCELERATOR</span>
+      
+      <!-- Mini Cube Navigation -->
+      <nav class="cube-nav-mini" aria-label="Main navigation">
+        <button class="cube-nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+          <div class="mini-cube-icon">
+            <div class="mini-face mini-front"></div>
+            <div class="mini-face mini-back"></div>
+            <div class="mini-face mini-right"></div>
+            <div class="mini-face mini-left"></div>
+            <div class="mini-face mini-top"></div>
+            <div class="mini-face mini-bottom"></div>
+          </div>
+        </button>
+        
+        <div class="cube-nav-menu" id="nav-menu">
+          <!-- Home goes to /home/ (main homepage with video) -->
+          <a href="/home/" class="nav-menu-item " data-page="home">
+            <span class="nav-icon">🏠</span> Home
+          </a>
+          <a href="/events/" class="nav-menu-item " data-page="events">
+            <span class="nav-icon">📅</span> Events
+          </a>
+          <a href="/resources/" class="nav-menu-item " data-page="resources">
+            <span class="nav-icon">📚</span> Resources
+          </a>
+          <a href="/join/" class="nav-menu-item active" data-page="join">
+            <span class="nav-icon">🚀</span> Join
+          </a>
+          <a href="/privacy/" class="nav-menu-item " data-page="privacy">
+            <span class="nav-icon">🔒</span> Privacy
+          </a>
+          <div class="nav-menu-divider"></div>
+          <!-- Introduction (big cube) at root -->
+          <a href="/" class="nav-menu-item " data-page="intro">
+            <span class="nav-icon">✦</span> Introduction
+          </a>
+          <a href="https://discord.gg/your-invite-link" class="nav-menu-item nav-back" target="_blank" rel="noopener">
+            <span class="nav-icon">💬</span> Discord
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+    
+<section class="page-section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-eyebrow">Get Started</span>
+      <h1 class="section-title">Join Job Club</h1>
+      <p class="section-subtitle">Fill out the form below to get your personalized AI career onboarding checklist.</p>
+    </div>
+    
+    <form class="join-form" id="join-form" action="#" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="firstName">
+            First Name <span class="required">*</span>
+          </label>
+          <input type="text" id="firstName" name="firstName" class="form-input" required placeholder="John">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="lastName">
+            Last Name <span class="required">*</span>
+          </label>
+          <input type="text" id="lastName" name="lastName" class="form-input" required placeholder="Doe">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="email">
+          NJIT Email <span class="required">*</span>
+        </label>
+        <input type="email" id="email" name="email" class="form-input" required placeholder="jd123@njit.edu">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="major">
+          Major <span class="required">*</span>
+        </label>
+        <input type="text" id="major" name="major" class="form-input" required placeholder="Computer Science">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="graduationYear">
+          Expected Graduation Year <span class="required">*</span>
+        </label>
+        <select id="graduationYear" name="graduationYear" class="form-select" required>
+          <option value="">Select year...</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="careerPath">
+          Interested Career Path <span class="required">*</span>
+        </label>
+        <select id="careerPath" name="careerPath" class="form-select" required>
+          <option value="">Select a path...</option>
+          <option value="ai-engineer">AI Engineer</option>
+          <option value="ai-consultant">AI Consultant</option>
+          <option value="ai-founder">AI Founder</option>
+          <option value="data-scientist">Data Scientist</option>
+          <option value="ml-researcher">ML Researcher</option>
+          <option value="unsure">Not Sure Yet</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="experience">
+          Current AI/ML Experience
+        </label>
+        <select id="experience" name="experience" class="form-select">
+          <option value="">Select experience level...</option>
+          <option value="none">No experience</option>
+          <option value="beginner">Beginner (some coursework)</option>
+          <option value="intermediate">Intermediate (personal projects)</option>
+          <option value="advanced">Advanced (internship/work experience)</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="goals">
+          What do you hope to achieve? (Optional)
+        </label>
+        <textarea id="goals" name="goals" class="form-textarea" placeholder="Tell us about your career goals and what you hope to get from Job Club..."></textarea>
+      </div>
+      
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+          Get My Checklist →
+        </button>
+      </div>
+      
+      <p style="text-align: center; font-size: 0.85rem; color: var(--color-gray-500);">
+        By signing up, you agree to our <a href="/privacy/">Privacy Policy</a>.
+      </p>
+    </form>
+  </div>
+</section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="copyright">© 2025 Job Club - NJIT AI Career Accelerator. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="page-transition">
+    <div class="transition-cube">
+      <div class="transition-face"></div>
+    </div>
+    <div class="transition-info">
+      <span class="transition-icon" id="transition-icon">✦</span>
+      <span class="transition-title" id="transition-title">HOME</span>
+    </div>
+  </div>
+  
+  <script src="/js/cube-nav.js"></script>
+</body>
+</html>
