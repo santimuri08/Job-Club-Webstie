@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover Job Club - Your gateway to an AI career at NJIT.">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Welcome | Job Club">
+  <meta property="og:description" content="Discover Job Club - Your gateway to an AI career at NJIT.">
+  <meta property="og:type" content="website">
+  
+  <title>Welcome | Job Club</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  
+  <!-- Page Header -->
+  <header class="page-header">
+    <!-- Logo goes to Introduction (big cube) -->
+    <a href="/intro/" class="logo">Job <span>Club</span></a>
+    
+    <div class="header-right">
+      <span class="header-eyebrow">NJIT AI CAREER ACCELERATOR</span>
+      
+      <!-- Mini Cube Navigation -->
+      <nav class="cube-nav-mini" aria-label="Main navigation">
+        <button class="cube-nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+          <div class="mini-cube-icon">
+            <div class="mini-face mini-front"></div>
+            <div class="mini-face mini-back"></div>
+            <div class="mini-face mini-right"></div>
+            <div class="mini-face mini-left"></div>
+            <div class="mini-face mini-top"></div>
+            <div class="mini-face mini-bottom"></div>
+          </div>
+        </button>
+        
+        <div class="cube-nav-menu" id="nav-menu">
+          <!-- Home goes to index.njk (main homepage with video) -->
+          <a href="/" class="nav-menu-item " data-page="home">
+            <span class="nav-icon">🏠</span> Home
+          </a>
+          <a href="/events/" class="nav-menu-item " data-page="events">
+            <span class="nav-icon">📅</span> Events
+          </a>
+          <a href="/resources/" class="nav-menu-item " data-page="resources">
+            <span class="nav-icon">📚</span> Resources
+          </a>
+          <a href="/join/" class="nav-menu-item " data-page="join">
+            <span class="nav-icon">🚀</span> Join
+          </a>
+          <a href="/privacy/" class="nav-menu-item " data-page="privacy">
+            <span class="nav-icon">🔒</span> Privacy
+          </a>
+          <div class="nav-menu-divider"></div>
+          <!-- Introduction with big cube -->
+          <a href="/intro/" class="nav-menu-item active" data-page="intro">
+            <span class="nav-icon">✦</span> Introduction
+          </a>
+          <a href="https://discord.gg/your-invite-link" class="nav-menu-item nav-back" target="_blank" rel="noopener">
+            <span class="nav-icon">💬</span> Discord
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="main-content">
+    
+<section class="intro-hero">
+  <div class="intro-container">
+    
+    <!-- Interactive 3D Cube -->
+    <div class="cube-wrapper">
+      <div class="cube-scene">
+        <div class="cube" id="intro-cube">
+          <!-- Front Face - Home -->
+          <div class="cube-face cube-front" data-face="front">
+            <div class="face-content">
+              <span class="face-icon">🏠</span>
+              <h3>Home</h3>
+              <p>Your AI career starts here</p>
+            </div>
+          </div>
+          <!-- Back Face - Community -->
+          <div class="cube-face cube-back" data-face="back">
+            <div class="face-content">
+              <span class="face-icon">👥</span>
+              <h3>Community</h3>
+              <p>Join 200+ NJIT students</p>
+            </div>
+          </div>
+          <!-- Right Face - Events -->
+          <div class="cube-face cube-right" data-face="right">
+            <div class="face-content">
+              <span class="face-icon">📅</span>
+              <h3>Events</h3>
+              <p>Workshops & networking</p>
+            </div>
+          </div>
+          <!-- Left Face - Resources -->
+          <div class="cube-face cube-left" data-face="left">
+            <div class="face-content">
+              <span class="face-icon">📚</span>
+              <h3>Resources</h3>
+              <p>Tools & tutorials</p>
+            </div>
+          </div>
+          <!-- Top Face - Career -->
+          <div class="cube-face cube-top" data-face="top">
+            <div class="face-content">
+              <span class="face-icon">🚀</span>
+              <h3>Career</h3>
+              <p>Launch your AI journey</p>
+            </div>
+          </div>
+          <!-- Bottom Face - Learn -->
+          <div class="cube-face cube-bottom" data-face="bottom">
+            <div class="face-content">
+              <span class="face-icon">💡</span>
+              <h3>Learn</h3>
+              <p>Build real-world skills</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cube Instructions -->
+      <p class="cube-instructions">
+        <span class="drag-icon">👆</span> Drag to explore
+      </p>
+    </div>
+    
+    <!-- Info Panel -->
+    <div class="intro-info">
+      <span class="intro-eyebrow">NJIT AI CAREER ACCELERATOR</span>
+      <h1 class="intro-title">Welcome to <span class="gradient-text">Job Club</span></h1>
+      <p class="intro-description">
+        Turn your potential into AI career power. We help NJIT students build portfolios, 
+        land interviews, and launch careers in artificial intelligence.
+      </p>
+      
+      <!-- Face Info Display -->
+      <div class="face-info" id="face-info">
+        <div class="face-info-icon">🏠</div>
+        <div class="face-info-text">
+          <h4>Home</h4>
+          <p>Your central hub for everything AI career related at NJIT.</p>
+        </div>
+      </div>
+      
+      <!-- Get Started Button - Goes to main homepage (index.njk) -->
+      <a href="/" class="btn btn-primary btn-large btn-glow">
+        Get Started
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+    
+  </div>
+</section>
+
+<script src="/js/intro-cube.js"></script>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="copyright">© 2025 Job Club - NJIT AI Career Accelerator. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="page-transition">
+    <div class="transition-cube">
+      <div class="transition-face"></div>
+    </div>
+    <div class="transition-info">
+      <span class="transition-icon" id="transition-icon">✦</span>
+      <span class="transition-title" id="transition-title">HOME</span>
+    </div>
+  </div>
+  
+  <script src="/js/cube-nav.js"></script>
+</body>
+</html>
