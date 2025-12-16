@@ -82,6 +82,29 @@ module.exports = async function handler(req, res) {
   const signature = req.headers['x-sanity-signature']
   const secret = process.env.SANITY_WEBHOOK_SECRET
 
+  if (secret && !rawBody) {
+    res.writeHead(400, {...DEFAULT_HEADERS, ...cors})
+    res.end(
+      JSON.stringify({
+        error: 'Bad Request',
+        message: 'Missing webhook body; cannot verify signature',
+        requiredHeader: 'x-sanity-signature'
+      })
+    )
+    return
+  }
+
+  if (secret && !signature) {
+    res.writeHead(401, {...DEFAULT_HEADERS, ...cors})
+    res.end(
+      JSON.stringify({
+        error: 'Invalid signature',
+        message: 'Missing x-sanity-signature header'
+      })
+    )
+    return
+  }
+
   if (!verifySanitySignature({body: rawBody, signature, secret})) {
     res.writeHead(401, {...DEFAULT_HEADERS, ...cors})
     res.end(JSON.stringify({error: 'Invalid signature'}))

@@ -39,6 +39,10 @@ const client = createClient({
   useCdn: false
 })
 
+function getAirtableToken() {
+  return process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT
+}
+
 module.exports = async function handler(req, res) {
   const cors = getCorsHeaders()
 
@@ -55,6 +59,18 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    if (!process.env.SANITY_PROJECT_ID || !process.env.SANITY_DATASET || !process.env.SANITY_WRITE_TOKEN) {
+      res.writeHead(500, {...DEFAULT_HEADERS, ...cors})
+      res.end(
+        JSON.stringify({
+          error: 'Server misconfigured',
+          message: 'Missing required Sanity environment variables',
+          required: ['SANITY_PROJECT_ID', 'SANITY_DATASET', 'SANITY_WRITE_TOKEN']
+        })
+      )
+      return
+    }
+
     const data = getJsonBody(req)
 
     const inferredName = [data.firstName, data.lastName].filter(Boolean).join(' ').trim()
@@ -169,14 +185,15 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    if (process.env.AIRTABLE_API_KEY && process.env.AIRTABLE_BASE_ID && process.env.AIRTABLE_TABLE_NAME) {
+    const airtableToken = getAirtableToken()
+    if (airtableToken && process.env.AIRTABLE_BASE_ID && process.env.AIRTABLE_TABLE_NAME) {
       try {
         const baseUrl = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(
           process.env.AIRTABLE_TABLE_NAME
         )}`
 
         const authHeaders = {
-          Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
+          Authorization: `Bearer ${airtableToken}`,
           'Content-Type': 'application/json'
         }
 
