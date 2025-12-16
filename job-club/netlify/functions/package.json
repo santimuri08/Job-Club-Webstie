@@ -4,7 +4,9 @@
   "description": "Netlify functions for Job Club",
   "main": "submit-member.js",
   "dependencies": {
-    "airtable": "^0.12.2"
+    "airtable": "^0.12.2",
+    "node-fetch": "^2.7.0",
+    "@sendgrid/mail": "^7.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

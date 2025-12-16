@@ -9,7 +9,7 @@
 # Function configurations
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["airtable"]
+  external_node_modules = ["airtable", "node-fetch", "@sendgrid/mail"]
 
 # Global headers
 [[headers]]
