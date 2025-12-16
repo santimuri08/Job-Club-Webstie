@@ -1,4 +1,4 @@
-const { createClient } = require('@sanity/client')
+const {createClient} = require('@sanity/client')
 
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
@@ -19,76 +19,66 @@ function trimString(value) {
   return trimmed ? trimmed : undefined
 }
 
-// Initialize Sanity client
+function getJsonBody(req) {
+  if (!req) return {}
+  if (req.body && typeof req.body === 'object') return req.body
+  if (typeof req.body === 'string') {
+    try {
+      return JSON.parse(req.body)
+    } catch {
+      return {}
+    }
+  }
+  return {}
+}
+
 const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_DATASET,
   token: process.env.SANITY_WRITE_TOKEN,
-  useCdn: false,
+  useCdn: false
 })
 
-exports.handler = async function(event, context) {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        ...DEFAULT_HEADERS,
-        ...getCorsHeaders()
-      },
-      body: ''
-    }
+module.exports = async function handler(req, res) {
+  const cors = getCorsHeaders()
+
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204, {...DEFAULT_HEADERS, ...cors})
+    res.end('')
+    return
   }
 
-  // Only allow POST requests
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: {
-        ...DEFAULT_HEADERS,
-        ...getCorsHeaders()
-      },
-      body: JSON.stringify({ error: 'Method Not Allowed' })
-    }
+  if (req.method !== 'POST') {
+    res.writeHead(405, {...DEFAULT_HEADERS, ...cors})
+    res.end(JSON.stringify({error: 'Method Not Allowed'}))
+    return
   }
 
   try {
-    // Parse the incoming data
-    const data = JSON.parse(event.body || '{}')
-    
-    // Validate required fields
+    const data = getJsonBody(req)
+
     const inferredName = [data.firstName, data.lastName].filter(Boolean).join(' ').trim()
     const name = (data.name || inferredName || '').trim()
     const email = (data.email || '').trim().toLowerCase()
     const careerGoal = (data.careerGoal || data.careerPath || '').trim()
 
     if (!name || !email || !careerGoal) {
-      return {
-        statusCode: 400,
-        headers: {
-          ...DEFAULT_HEADERS,
-          ...getCorsHeaders()
-        },
-        body: JSON.stringify({ 
+      res.writeHead(400, {...DEFAULT_HEADERS, ...cors})
+      res.end(
+        JSON.stringify({
           error: 'Missing required fields',
           required: ['name', 'email', 'careerGoal']
         })
-      }
+      )
+      return
     }
 
     if (!email.includes('@njit.edu')) {
-      return {
-        statusCode: 400,
-        headers: {
-          ...DEFAULT_HEADERS,
-          ...getCorsHeaders()
-        },
-        body: JSON.stringify({
-          error: 'Must use an NJIT email address'
-        })
-      }
+      res.writeHead(400, {...DEFAULT_HEADERS, ...cors})
+      res.end(JSON.stringify({error: 'Must use an NJIT email address'}))
+      return
     }
 
-    // Basic input normalization
     const majorInput = trimString(data.major)
     const graduationYearInput = trimString(data.graduationYear)
     const linkedinInput = trimString(data.linkedin || data.linkedinUrl)
@@ -98,11 +88,9 @@ exports.handler = async function(event, context) {
 
     const submittedAt = new Date().toISOString()
 
-    // Check if member already exists
-    const existingMember = await client.fetch(
-      `*[_type == "memberProfile" && email == $email][0]`,
-      { email }
-    )
+    const existingMember = await client.fetch(`*[_type == "memberProfile" && email == $email][0]`, {
+      email
+    })
 
     const major = majorInput || existingMember?.major
     const graduationYear = graduationYearInput || existingMember?.graduationYear
@@ -114,7 +102,6 @@ exports.handler = async function(event, context) {
       calendly: calendlyInput || existingMember?.socialLinks?.calendly
     }
 
-    // Compute missing prerequisites for personalized checklist
     const missingPrerequisites = {
       linkedin: !socialLinks.linkedin,
       github: !socialLinks.github,
@@ -124,16 +111,15 @@ exports.handler = async function(event, context) {
 
     const missingAny = Object.values(missingPrerequisites).some(Boolean)
     const existingOnboardingStatus = existingMember?.onboarding?.status
-    const onboardingStatus = existingOnboardingStatus === 'completed'
-      ? 'completed'
-      : (missingAny ? 'in_progress' : 'completed')
+    const onboardingStatus =
+      existingOnboardingStatus === 'completed' ? 'completed' : missingAny ? 'in_progress' : 'completed'
 
     const onboardingSubmittedAt = existingMember?.onboarding?.submittedAt || submittedAt
-    const onboardingCompletedAt = onboardingStatus === 'completed'
-      ? (existingMember?.onboarding?.completedAt || submittedAt)
-      : existingMember?.onboarding?.completedAt
+    const onboardingCompletedAt =
+      onboardingStatus === 'completed'
+        ? existingMember?.onboarding?.completedAt || submittedAt
+        : existingMember?.onboarding?.completedAt
 
-    // Upsert member profile
     const baseFields = {
       name,
       email,
@@ -156,18 +142,14 @@ exports.handler = async function(event, context) {
     if (existingMember?._id) {
       member = await client.patch(existingMember._id).set(baseFields).commit()
     } else {
-      member = await client.create({
-        _type: 'memberProfile',
-        ...baseFields
-      })
+      member = await client.create({_type: 'memberProfile', ...baseFields})
     }
 
-    // Optional: forward to Zapier (for email + Airtable/Discord flows)
     if (process.env.ZAPIER_WEBHOOK_URL) {
       try {
         await fetch(process.env.ZAPIER_WEBHOOK_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
             source: 'job-club',
             type: 'onboarding_submission',
@@ -187,13 +169,12 @@ exports.handler = async function(event, context) {
       }
     }
 
-    // Optional: upsert into Airtable directly (if configured)
-    // Notes:
-    // - Requires AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_TABLE_NAME
-    // - Uses Airtable REST API with a simple "find by email" then create/update
     if (process.env.AIRTABLE_API_KEY && process.env.AIRTABLE_BASE_ID && process.env.AIRTABLE_TABLE_NAME) {
       try {
-        const baseUrl = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(process.env.AIRTABLE_TABLE_NAME)}`
+        const baseUrl = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(
+          process.env.AIRTABLE_TABLE_NAME
+        )}`
+
         const authHeaders = {
           Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
           'Content-Type': 'application/json'
@@ -201,7 +182,7 @@ exports.handler = async function(event, context) {
 
         const filterFormula = `({Email} = "${email.replace(/\"/g, '')}")`
         const searchUrl = `${baseUrl}?maxRecords=1&filterByFormula=${encodeURIComponent(filterFormula)}`
-        const searchResp = await fetch(searchUrl, { headers: authHeaders })
+        const searchResp = await fetch(searchUrl, {headers: authHeaders})
         const searchJson = await searchResp.json()
         const existingRecord = Array.isArray(searchJson.records) ? searchJson.records[0] : null
 
@@ -228,13 +209,13 @@ exports.handler = async function(event, context) {
           await fetch(`${baseUrl}/${existingRecord.id}`, {
             method: 'PATCH',
             headers: authHeaders,
-            body: JSON.stringify({ fields })
+            body: JSON.stringify({fields})
           })
         } else {
           await fetch(baseUrl, {
             method: 'POST',
             headers: authHeaders,
-            body: JSON.stringify({ records: [{ fields }] })
+            body: JSON.stringify({records: [{fields}]})
           })
         }
       } catch (e) {
@@ -242,32 +223,11 @@ exports.handler = async function(event, context) {
       }
     }
 
-    // Return success response
-    return {
-      statusCode: 200,
-      headers: {
-        ...DEFAULT_HEADERS,
-        ...getCorsHeaders()
-      },
-      body: JSON.stringify({ 
-        success: true,
-        member: member,
-        message: 'Member profile created successfully'
-      })
-    }
-
+    res.writeHead(200, {...DEFAULT_HEADERS, ...cors})
+    res.end(JSON.stringify({success: true, member, message: 'Member profile created successfully'}))
   } catch (error) {
     console.error('Error submitting form:', error)
-    return {
-      statusCode: 500,
-      headers: {
-        ...DEFAULT_HEADERS,
-        ...getCorsHeaders()
-      },
-      body: JSON.stringify({ 
-        error: 'Internal Server Error',
-        message: error.message
-      })
-    }
+    res.writeHead(500, {...DEFAULT_HEADERS, ...cors})
+    res.end(JSON.stringify({error: 'Internal Server Error', message: error.message}))
   }
 }

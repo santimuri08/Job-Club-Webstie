@@ -24,6 +24,16 @@ export default {
       ]
     },
     {
+      name: 'major',
+      title: 'Major',
+      type: 'string'
+    },
+    {
+      name: 'graduationYear',
+      title: 'Graduation Year',
+      type: 'string'
+    },
+    {
       name: 'careerGoal',
       title: 'Career Goal',
       type: 'string',
@@ -38,6 +48,67 @@ export default {
         ]
       },
       validation: Rule => Rule.required()
+    },
+    {
+      name: 'onboarding',
+      title: 'Onboarding',
+      type: 'object',
+      fields: [
+        {
+          name: 'status',
+          title: 'Onboarding Status',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'New', value: 'new' },
+              { title: 'In Progress', value: 'in_progress' },
+              { title: 'Completed', value: 'completed' }
+            ]
+          },
+          initialValue: 'new'
+        },
+        {
+          name: 'submittedAt',
+          title: 'Submitted At',
+          type: 'datetime'
+        },
+        {
+          name: 'completedAt',
+          title: 'Completed At',
+          type: 'datetime'
+        },
+        {
+          name: 'missingPrerequisites',
+          title: 'Missing Prerequisites',
+          type: 'object',
+          fields: [
+            {
+              name: 'linkedin',
+              title: 'Missing LinkedIn',
+              type: 'boolean',
+              initialValue: false
+            },
+            {
+              name: 'github',
+              title: 'Missing GitHub',
+              type: 'boolean',
+              initialValue: false
+            },
+            {
+              name: 'portfolio',
+              title: 'Missing Portfolio',
+              type: 'boolean',
+              initialValue: false
+            },
+            {
+              name: 'calendly',
+              title: 'Missing Calendly',
+              type: 'boolean',
+              initialValue: false
+            }
+          ]
+        }
+      ]
     },
     {
       name: 'status',

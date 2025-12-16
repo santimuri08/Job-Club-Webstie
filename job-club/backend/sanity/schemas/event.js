@@ -4,6 +4,19 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'workflowStatus',
+      title: 'Workflow Status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Draft', value: 'draft' },
+          { title: 'Review', value: 'review' },
+          { title: 'Published', value: 'published' }
+        ]
+      },
+      initialValue: 'draft'
+    },
+    {
       name: 'title',
       title: 'Event Title',
       type: 'string',
@@ -134,9 +147,14 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{ type: 'memberProfile' }]
+          to: [{ type: 'speaker' }]
         }
       ]
+    },
+    {
+      name: 'publishedAt',
+      title: 'Published At',
+      type: 'datetime'
     },
     {
       name: 'maxAttendees',

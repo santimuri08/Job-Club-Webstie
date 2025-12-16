@@ -4,6 +4,19 @@ export default {
   type: 'document',
   fields: [
     {
+      name: 'workflowStatus',
+      title: 'Workflow Status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Draft', value: 'draft' },
+          { title: 'Review', value: 'review' },
+          { title: 'Published', value: 'published' }
+        ]
+      },
+      initialValue: 'draft'
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -92,7 +105,7 @@ export default {
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: [{type: 'memberProfile'}]
+      to: [{type: 'author'}]
     },
     {
       name: 'externalLink',
