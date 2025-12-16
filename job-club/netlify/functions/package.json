@@ -1,0 +1,12 @@
+{
+  "name": "job-club-functions",
+  "version": "1.0.0",
+  "description": "Netlify functions for Job Club",
+  "main": "submit-member.js",
+  "dependencies": {
+    "airtable": "^0.12.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
