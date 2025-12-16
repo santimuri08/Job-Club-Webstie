@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Job Club - AI Career Accelerator for NJIT Students",
   "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy",
+    "start": "node ./node_modules/@11ty/eleventy/cmd.js --serve",
+    "build": "node ./node_modules/@11ty/eleventy/cmd.js",
     "lint": "eslint src/js/**/*.js",
     "lint:css": "stylelint src/css/**/*.css",
     "test": "playwright test",
