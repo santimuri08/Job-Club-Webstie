@@ -340,6 +340,10 @@ img {
   color: var(--color-gray-500);
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .cookie-banner {
   position: fixed;
   left: 1rem;

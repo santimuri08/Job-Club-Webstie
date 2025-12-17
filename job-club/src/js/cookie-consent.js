@@ -33,36 +33,43 @@
   }
   
   // Accept button handler
-  acceptBtn.addEventListener('click', function() {
+  acceptBtn.addEventListener('click', function(e) {
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
     localStorage.setItem('cookie-consent', JSON.stringify({ analytics: true }));
     banner.hidden = true;
     loadAnalytics();
   });
   
   // Reject button handler
-  rejectBtn.addEventListener('click', function() {
+  rejectBtn.addEventListener('click', function(e) {
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
     localStorage.setItem('cookie-consent', JSON.stringify({ analytics: false }));
     banner.hidden = true;
   });
 
   if (preferencesBtn && preferencesModal) {
-    preferencesBtn.addEventListener('click', function() {
+    preferencesBtn.addEventListener('click', function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
       const existing = parseConsent(localStorage.getItem('cookie-consent'));
       if (analyticsToggle) {
         analyticsToggle.checked = Boolean(existing.analytics);
       }
+      banner.hidden = true;
       preferencesModal.hidden = false;
     });
   }
 
   if (preferencesCancelBtn && preferencesModal) {
-    preferencesCancelBtn.addEventListener('click', function() {
+    preferencesCancelBtn.addEventListener('click', function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
       preferencesModal.hidden = true;
+      banner.hidden = true;
     });
   }
 
   if (preferencesSaveBtn && preferencesModal) {
-    preferencesSaveBtn.addEventListener('click', function() {
+    preferencesSaveBtn.addEventListener('click', function(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
       const settings = {
         analytics: analyticsToggle ? Boolean(analyticsToggle.checked) : false
       };
