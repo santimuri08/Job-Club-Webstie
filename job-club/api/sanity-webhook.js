@@ -148,6 +148,11 @@ module.exports = async function handler(req, res) {
     publishedAt: doc?.publishedAt
   }
 
+  const docType = normalized.docType
+  const docId = normalized.docId
+  const title = doc?.title
+  const slug = doc?.slug?.current
+
   if (process.env.ZAPIER_WEBHOOK_URL) {
     try {
       await fetch(process.env.ZAPIER_WEBHOOK_URL, {
@@ -156,6 +161,10 @@ module.exports = async function handler(req, res) {
         body: JSON.stringify({
           source: 'job-club',
           type: 'sanity_webhook',
+          docType,
+          docId,
+          title,
+          slug,
           receivedAt: new Date().toISOString(),
           normalized,
           payload
