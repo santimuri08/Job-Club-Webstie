@@ -15,14 +15,20 @@ module.exports = async function() {
 
   const client = createSanityClient()
   if (!client) {
+    // Return fallback data with all fields for frontend modal
     return fallback.map((r) => ({
       title: r.title,
       slug: r.slug,
       category: r.category,
       description: r.description || r.excerpt || '',
+      icon: r.icon || 'document',
+      type: r.type || (r.url ? 'external' : 'internal'),
       url: r.url || (r.slug ? `/resources/${r.slug}/` : '#'),
       externalLink: r.url || null,
-      content: []
+      fullDescription: r.fullDescription || r.description || '',
+      content: r.content || [],
+      actionText: r.actionText || 'Learn More',
+      actionUrl: r.actionUrl || r.url || '#'
     }))
   }
 
@@ -41,6 +47,7 @@ module.exports = async function() {
 
     return (Array.isArray(results) ? results : []).map((r) => {
       const category = Array.isArray(r.categories) && r.categories[0] ? r.categories[0] : r.resourceType
+      const isExternal = Boolean(r.externalLink)
       const url = r.externalLink || (r.slug ? `/resources/${r.slug}/` : '#')
 
       return {
@@ -48,9 +55,14 @@ module.exports = async function() {
         slug: r.slug,
         category,
         description: r.description,
+        icon: 'document', // Default icon for Sanity resources
+        type: isExternal ? 'external' : 'internal',
         url,
         externalLink: r.externalLink || null,
-        content: Array.isArray(r.content) ? r.content : []
+        fullDescription: r.description,
+        content: Array.isArray(r.content) ? r.content : [],
+        actionText: 'Learn More',
+        actionUrl: r.externalLink || '#'
       }
     })
   } catch {
@@ -59,9 +71,14 @@ module.exports = async function() {
       slug: r.slug,
       category: r.category,
       description: r.description || r.excerpt || '',
+      icon: r.icon || 'document',
+      type: r.type || (r.url ? 'external' : 'internal'),
       url: r.url || (r.slug ? `/resources/${r.slug}/` : '#'),
       externalLink: r.url || null,
-      content: []
+      fullDescription: r.fullDescription || r.description || '',
+      content: r.content || [],
+      actionText: r.actionText || 'Learn More',
+      actionUrl: r.actionUrl || r.url || '#'
     }))
   }
 }
