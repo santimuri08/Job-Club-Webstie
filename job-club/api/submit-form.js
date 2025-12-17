@@ -19,9 +19,29 @@ function trimString(value) {
   return trimmed ? trimmed : undefined
 }
 
+function readStreamBody(req) {
+  return new Promise((resolve, reject) => {
+    if (!req || req.readableEnded) return resolve('')
+    let data = ''
+    req.setEncoding('utf8')
+    req.on('data', (chunk) => {
+      data += chunk
+    })
+    req.on('end', () => resolve(data))
+    req.on('error', reject)
+  })
+}
+
 function getJsonBody(req) {
   if (!req) return {}
   if (req.body && typeof req.body === 'object') return req.body
+  if (Buffer.isBuffer(req.body)) {
+    try {
+      return JSON.parse(req.body.toString('utf8'))
+    } catch {
+      return {}
+    }
+  }
   if (typeof req.body === 'string') {
     try {
       return JSON.parse(req.body)
@@ -71,7 +91,8 @@ module.exports = async function handler(req, res) {
       return
     }
 
-    const data = getJsonBody(req)
+    const rawBody = (typeof req.body === 'undefined' || req.body === null) ? await readStreamBody(req) : ''
+    const data = getJsonBody({body: rawBody || req.body})
 
     const inferredName = [data.firstName, data.lastName].filter(Boolean).join(' ').trim()
     const name = (data.name || inferredName || '').trim()

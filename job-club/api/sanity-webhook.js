@@ -43,9 +43,29 @@ function extractDoc(payload) {
   return undefined
 }
 
-function getRawBody(req) {
+function readStreamBody(req) {
+  return new Promise((resolve, reject) => {
+    if (!req || req.readableEnded) return resolve('')
+    let data = ''
+    req.setEncoding('utf8')
+    req.on('data', (chunk) => {
+      data += chunk
+    })
+    req.on('end', () => resolve(data))
+    req.on('error', reject)
+  })
+}
+
+async function getRawBody(req) {
   if (!req) return ''
+  if (typeof req.rawBody === 'string') return req.rawBody
+  if (Buffer.isBuffer(req.rawBody)) return req.rawBody.toString('utf8')
+  if (Buffer.isBuffer(req.body)) return req.body.toString('utf8')
   if (typeof req.body === 'string') return req.body
+
+  const streamBody = await readStreamBody(req)
+  if (streamBody) return streamBody
+
   if (req.body && typeof req.body === 'object') return JSON.stringify(req.body)
   return ''
 }
@@ -78,7 +98,7 @@ module.exports = async function handler(req, res) {
     return
   }
 
-  const rawBody = getRawBody(req)
+  const rawBody = await getRawBody(req)
   const signature = req.headers['x-sanity-signature']
   const secret = process.env.SANITY_WEBHOOK_SECRET
 
@@ -111,7 +131,14 @@ module.exports = async function handler(req, res) {
     return
   }
 
-  const payload = getJsonBody(req)
+  let payload = getJsonBody(req)
+  if ((!payload || Object.keys(payload).length === 0) && rawBody) {
+    try {
+      payload = JSON.parse(rawBody)
+    } catch {
+      payload = {}
+    }
+  }
   const doc = extractDoc(payload)
 
   const normalized = {
