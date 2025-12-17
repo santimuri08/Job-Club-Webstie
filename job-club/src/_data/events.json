@@ -2,6 +2,7 @@
   {
     "id": "ai-resume-workshop-jan",
     "title": "AI-Powered Resume Workshop",
+    "slug": "ai-resume-workshop-jan",
     "date": "2025-01-15",
     "time": "6:00 PM",
     "endTime": "7:30 PM",
@@ -43,6 +44,7 @@
   {
     "id": "linkedin-optimization-workshop",
     "title": "LinkedIn Profile Optimization for AI Careers",
+    "slug": "linkedin-optimization-workshop",
     "date": "2025-01-22",
     "time": "5:30 PM",
     "endTime": "7:00 PM",
@@ -85,6 +87,7 @@
   {
     "id": "mock-interview-night-feb",
     "title": "AI/ML Mock Interview Night",
+    "slug": "mock-interview-night-feb",
     "date": "2025-02-05",
     "time": "6:00 PM",
     "endTime": "8:00 PM",
@@ -133,6 +136,7 @@
   {
     "id": "github-portfolio-workshop",
     "title": "Building a GitHub Portfolio That Gets Noticed",
+    "slug": "github-portfolio-workshop",
     "date": "2025-02-12",
     "time": "6:00 PM",
     "endTime": "7:30 PM",
@@ -167,67 +171,54 @@
       "requiresApproval": false,
       "questions": []
     },
-    "spotsTotal": 50,
+    "spotsTotal": 60,
     "spotsLeft": 32,
     "recordingUrl": null,
     "resources": []
   },
   {
-    "id": "ai-career-panel",
-    "title": "AI Career Paths Panel: From Student to Professional",
+    "id": "ai-industry-panel-feb",
+    "title": "AI Industry Panel: Breaking Into Tech",
+    "slug": "ai-industry-panel-feb",
     "date": "2025-02-19",
-    "time": "5:00 PM",
-    "endTime": "6:30 PM",
+    "time": "6:00 PM",
+    "endTime": "7:30 PM",
     "timezone": "EST",
-    "location": "Campus Center Atrium, NJIT",
+    "location": "Campus Center Ballroom",
     "address": "Campus Center, 150 Bleeker St, Newark, NJ 07102",
     "type": "in-person",
     "category": "Panel",
     "status": "upcoming",
-    "description": "Hear from NJIT alumni and industry professionals about their journey into AI careers and get your questions answered.",
-    "fullDescription": "A panel discussion featuring AI professionals who started where you are now. Learn about different career paths in AI, from research to product to consulting, and get practical advice for your job search. Networking reception follows!",
+    "description": "Hear from AI professionals at top companies about their career paths, hiring insights, and advice for students.",
+    "fullDescription": "Join us for an inspiring panel discussion with AI professionals from leading tech companies. Learn about different career paths in AI, what hiring managers look for, and get your questions answered directly by industry experts.",
     "agenda": [
-      {"time": "5:00 PM", "title": "Introductions", "description": "Panelist career journeys"},
-      {"time": "5:20 PM", "title": "Career Paths", "description": "Research, Product, Engineering, and Consulting tracks"},
-      {"time": "5:45 PM", "title": "Hiring Insights", "description": "What hiring managers actually look for"},
-      {"time": "6:05 PM", "title": "Job Search Tips", "description": "Navigating the market as a new grad"},
-      {"time": "6:20 PM", "title": "Open Q&A", "description": "Audience questions"}
+      {"time": "6:00 PM", "title": "Welcome & Introductions", "description": "Meet our panelists"},
+      {"time": "6:15 PM", "title": "Career Journeys", "description": "Panelists share their paths to AI careers"},
+      {"time": "6:45 PM", "title": "Hiring Insights", "description": "What companies look for in AI candidates"},
+      {"time": "7:00 PM", "title": "Audience Q&A", "description": "Your questions answered"},
+      {"time": "7:20 PM", "title": "Networking", "description": "Meet the panelists"}
     ],
     "speakers": [
       {
-        "name": "Alex Rivera",
-        "title": "ML Engineer, Google",
-        "bio": "NJIT '19 alumni, now building recommendation systems at Google. Transitioned from web development to ML.",
-        "image": "/images/speakers/alex-rivera.jpg",
-        "linkedin": "https://linkedin.com/in/alexrivera"
+        "name": "Michelle Rodriguez",
+        "title": "AI Research Scientist, OpenAI",
+        "bio": "Michelle works on large language models and previously led ML teams at Amazon.",
+        "image": "/images/speakers/michelle-rodriguez.jpg",
+        "linkedin": "https://linkedin.com/in/michellerodriguez"
       },
       {
-        "name": "Michelle Wong",
-        "title": "Data Scientist, JPMorgan",
-        "bio": "Leads fraud detection ML models. Previously at Bloomberg after completing her MS at NJIT.",
-        "image": "/images/speakers/michelle-wong.jpg",
-        "linkedin": "https://linkedin.com/in/michellewong"
-      },
-      {
-        "name": "James Okonkwo",
-        "title": "AI Consultant, Deloitte",
-        "bio": "Helps Fortune 500 companies implement AI solutions. NJIT '18 alumni.",
-        "image": "/images/speakers/james-okonkwo.jpg",
-        "linkedin": "https://linkedin.com/in/jamesokonkwo"
-      },
-      {
-        "name": "Dr. Lisa Zhang",
-        "title": "Research Scientist, NVIDIA",
-        "bio": "Works on large language models. PhD from MIT, frequently collaborates with NJIT researchers.",
-        "image": "/images/speakers/lisa-zhang.jpg",
-        "linkedin": "https://linkedin.com/in/lisazhang"
+        "name": "James Kim",
+        "title": "VP of Engineering, AI Startup",
+        "bio": "James has built AI teams from scratch at multiple startups and led engineering at a unicorn.",
+        "image": "/images/speakers/james-kim.jpg",
+        "linkedin": "https://linkedin.com/in/jameskim"
       }
     ],
     "registration": {
       "type": "internal",
       "externalUrl": null,
       "requiresApproval": false,
-      "questions": ["Which career path interests you most?"]
+      "questions": ["What's your biggest question for the panelists?"]
     },
     "spotsTotal": 80,
     "spotsLeft": 45,
@@ -237,6 +228,7 @@
   {
     "id": "chatgpt-productivity-workshop",
     "title": "ChatGPT for Student Productivity",
+    "slug": "chatgpt-productivity-workshop",
     "date": "2025-03-05",
     "time": "6:00 PM",
     "endTime": "7:30 PM",
@@ -279,6 +271,7 @@
   {
     "id": "intro-workshop-dec",
     "title": "Job Club Kickoff: Your AI Career Roadmap",
+    "slug": "intro-workshop-dec",
     "date": "2024-12-10",
     "time": "6:00 PM",
     "endTime": "7:30 PM",
@@ -318,6 +311,7 @@
   {
     "id": "njit-ai-exploration-day",
     "title": "NJIT AI Exploration Day",
+    "slug": "njit-ai-exploration-day",
     "date": "2024-11-15",
     "time": "9:00 AM",
     "endTime": "5:00 PM",
@@ -358,6 +352,7 @@
   {
     "id": "resume-review-session-nov",
     "title": "Group Resume Review Session",
+    "slug": "resume-review-session-nov",
     "date": "2024-11-08",
     "time": "5:30 PM",
     "endTime": "7:00 PM",
