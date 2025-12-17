@@ -20,7 +20,8 @@ pageId: resources
         <span class="resource-category">{{ resource.category }}</span>
         <h3 class="resource-title">{{ resource.title }}</h3>
         <p class="resource-description">{{ resource.description }}</p>
-        <a href="{{ resource.url }}" class="resource-link" target="_blank" rel="noopener">
+        {% set isInternal = resource.url and resource.url.startsWith('/') %}
+        <a href="{{ resource.url }}" class="resource-link" data-track-event="resource_click" data-track-label="{{ resource.title }}" {% if not isInternal %}target="_blank" rel="noopener"{% endif %}>
           View Resource →
         </a>
       </div>

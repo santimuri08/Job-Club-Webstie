@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+title: Resource
+pagination:
+  data: resources
+  size: 1
+  alias: resource
+permalink: /resources/{{ resource.slug }}/
+---
+
+<section class="page-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Resource</span>
+      <h1 class="section-title">{{ resource.title }}</h1>
+      {% if resource.category %}
+      <p class="section-subtitle">{{ resource.category }}</p>
+      {% endif %}
+    </div>
+
+    <div class="event-card" style="max-width: 900px; margin: 0 auto;">
+      {% if resource.description %}
+      <p class="event-description">{{ resource.description }}</p>
+      {% endif %}
+
+      {% if resource.externalLink %}
+      <div class="event-actions" style="margin-top: 1.5rem;">
+        <a href="{{ resource.externalLink }}" class="btn btn-primary" target="_blank" rel="noopener">Open External Resource</a>
+      </div>
+      {% endif %}
+
+      {% if resource.content and resource.content.length %}
+      <div style="margin-top: 1.5rem;">
+        {% for block in resource.content %}
+          {% if block._type == 'block' %}
+            <p class="event-description">
+              {% for child in block.children %}{{ child.text }}{% endfor %}
+            </p>
+          {% elseif block._type == 'code' %}
+            <pre style="margin-top: 1rem; padding: 1rem; border-radius: 12px; border: 1px solid var(--color-gray-800); background: var(--color-gray-900); overflow: auto;"><code>{{ block.code }}</code></pre>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if not resource.externalLink and (not resource.content or not resource.content.length) %}
+      <div style="margin-top: 1.5rem;">
+        <p class="event-description">Full content for this resource will appear here once published in Sanity.</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="/resources/" class="btn btn-secondary">← Back to Resources</a>
+    </div>
+  </div>
+</section>

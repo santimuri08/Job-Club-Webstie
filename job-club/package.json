@@ -7,13 +7,19 @@
     "build": "node ./node_modules/@11ty/eleventy/cmd.js",
     "lint": "eslint src/js/**/*.js",
     "lint:css": "stylelint src/css/**/*.css",
+    "lint:md": "markdownlint-cli2 \"docs/**/*.md\" \"reference/**/*.md\" \"README.md\"",
+    "format:check": "prettier --check \"**/*.{js,json,css,md,njk,html}\"",
     "test": "playwright test",
     "test:headed": "playwright test --headed"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.57.0",
     "eslint": "^8.57.1",
+    "markdownlint-cli2": "^0.18.1",
+    "prettier": "^3.6.2",
+    "serve": "^14.2.4",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^36.0.1"
   },

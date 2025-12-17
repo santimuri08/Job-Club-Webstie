@@ -22,11 +22,12 @@ pageId: events
         <p class="event-location">📍 {{ event.location }}</p>
         <p class="event-description">{{ event.description }}</p>
         <div class="event-actions">
+          <a href="/events/{{ event.slug }}/" class="btn btn-secondary" data-track-event="event_details_click" data-track-label="{{ event.title }}">Details</a>
           {% if event.registrationUrl %}
-          <a href="{{ event.registrationUrl }}" class="btn btn-primary" target="_blank" rel="noopener">Register</a>
+          <a href="{{ event.registrationUrl }}" class="btn btn-primary" target="_blank" rel="noopener" data-track-event="event_register_click" data-track-label="{{ event.title }}">Register</a>
           {% endif %}
           {% if event.zoomUrl %}
-          <a href="{{ event.zoomUrl }}" class="btn btn-secondary" target="_blank" rel="noopener">Join Zoom</a>
+          <a href="{{ event.zoomUrl }}" class="btn btn-secondary" target="_blank" rel="noopener" data-track-event="event_join_click" data-track-label="{{ event.title }}">Join Zoom</a>
           {% endif %}
         </div>
       </div>

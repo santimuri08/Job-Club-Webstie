@@ -35,6 +35,10 @@
           major: data.major,
           graduationYear: data.graduationYear,
           careerPath: data.careerPath,
+          linkedin: data.linkedin,
+          github: data.github,
+          portfolio: data.portfolio,
+          calendly: data.calendly,
           experience: data.experience,
           goals: data.goals
         })

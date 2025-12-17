@@ -82,6 +82,28 @@ function normalizeCareerGoal(value) {
   return map[v] || 'other'
 }
 
+function careerGoalLabelFromInput(value) {
+  const v = String(value || '').trim()
+  if (!v) return ''
+
+  const map = {
+    'ai-engineer': 'AI Engineer',
+    'ai-consultant': 'AI Consultant',
+    'ai-founder': 'AI Founder',
+    'data-scientist': 'Data Scientist',
+    'ml-researcher': 'ML Researcher',
+    unsure: 'Not Sure Yet',
+    swe: 'Software Engineer',
+    pm: 'Product Manager',
+    ds: 'Data Scientist',
+    ai: 'AI/ML Engineer',
+    ux: 'UX/UI Designer',
+    other: 'Other'
+  }
+
+  return map[v] || 'Other'
+}
+
 function getAirtableToken() {
   return process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT
 }
@@ -120,7 +142,9 @@ module.exports = async function handler(req, res) {
     const inferredName = [data.firstName, data.lastName].filter(Boolean).join(' ').trim()
     const name = (data.name || inferredName || '').trim()
     const email = (data.email || '').trim().toLowerCase()
-    const careerGoal = normalizeCareerGoal(data.careerGoal || data.careerPath)
+    const careerGoalInput = data.careerGoal || data.careerPath
+    const careerGoal = normalizeCareerGoal(careerGoalInput)
+    const careerGoalLabel = careerGoalLabelFromInput(careerGoalInput || careerGoal)
 
     if (!name || !email || !careerGoal) {
       res.writeHead(400, {...DEFAULT_HEADERS, ...cors})
@@ -220,6 +244,7 @@ module.exports = async function handler(req, res) {
             major,
             graduationYear,
             careerGoal,
+            careerGoalLabel,
             socialLinks,
             missingPrerequisites
           })
@@ -285,10 +310,11 @@ module.exports = async function handler(req, res) {
     }
 
     res.writeHead(200, {...DEFAULT_HEADERS, ...cors})
-    res.end(JSON.stringify({success: true, member, message: 'Member profile created successfully'}))
-  } catch (error) {
-    console.error('Error submitting form:', error)
+    res.end(JSON.stringify({ok: true, memberId: member._id, careerGoalLabel}))
+    return
+  } catch (e) {
+    console.error('Submit form error:', e)
     res.writeHead(500, {...DEFAULT_HEADERS, ...cors})
-    res.end(JSON.stringify({error: 'Internal Server Error', message: error.message}))
+    res.end(JSON.stringify({error: 'Internal Server Error', message: e.message}))
   }
 }

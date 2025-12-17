@@ -50,7 +50,7 @@ npm run dev
 ### Serverless Functions
 
 #### Submit Join Form
-- **URL**: `/.netlify/functions/submit-form`
+- **URL**: `/api/submit-form`
 - **Method**: POST
 - **Body**: JSON with member profile data
 - **Response**: Created member profile or error
