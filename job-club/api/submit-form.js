@@ -55,9 +55,32 @@ function getJsonBody(req) {
 const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_DATASET,
+  apiVersion: process.env.SANITY_API_VERSION || '2023-05-03',
   token: process.env.SANITY_WRITE_TOKEN,
   useCdn: false
 })
+
+function normalizeCareerGoal(value) {
+  const v = String(value || '').trim()
+  if (!v) return ''
+
+  const map = {
+    'ai-engineer': 'ai',
+    'ai-consultant': 'ai',
+    'ai-founder': 'other',
+    'data-scientist': 'ds',
+    'ml-researcher': 'ai',
+    unsure: 'other',
+    swe: 'swe',
+    pm: 'pm',
+    ds: 'ds',
+    ai: 'ai',
+    ux: 'ux',
+    other: 'other'
+  }
+
+  return map[v] || 'other'
+}
 
 function getAirtableToken() {
   return process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_PAT
@@ -97,7 +120,7 @@ module.exports = async function handler(req, res) {
     const inferredName = [data.firstName, data.lastName].filter(Boolean).join(' ').trim()
     const name = (data.name || inferredName || '').trim()
     const email = (data.email || '').trim().toLowerCase()
-    const careerGoal = (data.careerGoal || data.careerPath || '').trim()
+    const careerGoal = normalizeCareerGoal(data.careerGoal || data.careerPath)
 
     if (!name || !email || !careerGoal) {
       res.writeHead(400, {...DEFAULT_HEADERS, ...cors})

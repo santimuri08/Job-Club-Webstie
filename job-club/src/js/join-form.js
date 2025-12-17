@@ -40,12 +40,23 @@
         })
       })
 
-      const json = await resp.json().catch(function() {
-        return {}
+      const rawText = await resp.text().catch(function() {
+        return ''
       })
 
+      const json = (function() {
+        try {
+          return rawText ? JSON.parse(rawText) : {}
+        } catch {
+          return {}
+        }
+      })()
+
       if (!resp.ok) {
-        const message = (json && (json.message || json.error)) || 'Submission failed'
+        const messageFromJson = json && (json.message || json.error)
+        const messageFromText = rawText && rawText.length < 400 ? rawText : ''
+        const message =
+          messageFromJson || messageFromText || `Submission failed (HTTP ${resp.status}${resp.statusText ? ` ${resp.statusText}` : ''})`
         throw new Error(message)
       }
 
