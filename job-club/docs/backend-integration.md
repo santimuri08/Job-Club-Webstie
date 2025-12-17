@@ -55,32 +55,24 @@ npm run dev
 - **Body**: JSON with member profile data
 - **Response**: Created member profile or error
 
+#### Sanity Webhook (forward to automations)
+- **URL**: `/api/sanity-webhook`
+- **Method**: POST
+- **Headers**: `x-sanity-signature: <HMAC sha256>` (optional if you set `SANITY_WEBHOOK_SECRET`)
+- **Body**: Raw JSON payload from Sanity webhook
+- **Behavior**: Verifies signature (if secret set), extracts document info, forwards to `ZAPIER_WEBHOOK_URL` with a normalized envelope
+
 ## Data Fetching
 
 ### Frontend Data Files
 
 - `src/_data/events.js` - Fetches events from Sanity
-- `src/_data/resources.js` - Fetches resources and categories
-- `src/_data/members.js` - Fetches member data
+- `src/_data/resources.js` - Fetches resources from Sanity
 
-### API Utilities
+Both data files implement:
 
-Located in `src/lib/api/`:
-
-- `events.js` - Event-related queries
-- `resources.js` - Resource-related queries
-- `members.js` - Member profile queries
-- `categories.js` - Category queries
-- `forms.js` - Form submission handlers
-
-### Example Usage
-
-```javascript
-// Fetch upcoming events
-import { getUpcomingEvents } from './lib/api/events'
-
-const { data: events, error } = await getUpcomingEvents(10)
-```
+- A build-time fetch from Sanity (when `SANITY_PROJECT_ID`/`SANITY_DATASET` are configured)
+- A fallback to the existing JSON data under `src/_data/*.json` if Sanity is not configured
 
 ## Content Models
 
@@ -109,10 +101,21 @@ const { data: events, error } = await getUpcomingEvents(10)
 
 ## Deployment
 
-### Netlify
-1. Connect your repository to Netlify
-2. Set environment variables in Netlify dashboard
-3. Deploy automatically on push to main
+### Vercel
+1. Import your repository into Vercel
+2. Project settings:
+   - Framework preset: Other (Eleventy autodetect works too)
+   - Build command: `npm run build`
+   - Output directory: `_site`
+   - Root directory: `job-club`
+3. Environment variables (Production/Preview):
+   - `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_WRITE_TOKEN`
+   - `SANITY_WEBHOOK_SECRET` (to verify Sanity signatures)
+   - `ZAPIER_WEBHOOK_URL` (Zapier Catch Hook URL)
+   - `AIRTABLE_PAT` (or `AIRTABLE_API_KEY`), `AIRTABLE_BASE_ID`, `AIRTABLE_TABLE_NAME`
+   - `CORS_ALLOW_ORIGIN`
+4. Sanity → Webhook: point to `https://<your-vercel-domain>/api/sanity-webhook` and set the same secret
+5. Deploy automatically on push to `main` (or enable GitHub Actions workflow for CI + optional deploy)
 
 ### Local Development
 1. Install dependencies

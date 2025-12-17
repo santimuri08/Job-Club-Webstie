@@ -100,10 +100,10 @@
 | Appears on first visit | Banner shows | [✅/❌] |
 | Accept button hides banner | Banner hidden | [✅/❌] |
 | Reject button hides banner | Banner hidden | [✅/❌] |
-| Accept stores consent | localStorage set to 'accepted' | [✅/❌] |
-| Reject stores consent | localStorage set to 'rejected' | [✅/❌] |
+| Accept stores consent | localStorage `cookie-consent` set to JSON `{ "analytics": true }` | [✅/❌] |
+| Reject stores consent | localStorage `cookie-consent` set to JSON `{ "analytics": false }` | [✅/❌] |
 | Doesn't show on return visit | Banner stays hidden | [✅/❌] |
-| Analytics load after accept | Console shows "Analytics loaded" | [✅/❌] |
+| Analytics load after accept | Plausible script injected (inspect DOM for `#plausible-script`) | [✅/❌] |
 
 ---
 

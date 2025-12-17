@@ -87,10 +87,18 @@ Use GA4 with consent mode, load only after user accepts cookies.
 ## Implementation Plan
 
 ### With Plausible (Recommended):
-```html
-<!-- Add to base.njk <head> -->
-<script defer data-domain="jobclub.njit.edu" src="https://plausible.io/js/script.js"></script>
+Plausible is loaded **only after consent** via `src/js/cookie-consent.js`.
+
+- Configure the domain in `src/_data/site.json`:
+
+```json
+{
+  "analyticsDomain": "your-domain.com"
+}
 ```
+
+- The layouts set a `data-analytics-domain` attribute on `<html>`.
+- After the user accepts analytics, the Plausible script is injected dynamically.
 
 ### With GA4 (If free required):
 ```javascript
