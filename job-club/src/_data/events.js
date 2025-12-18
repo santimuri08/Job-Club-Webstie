@@ -26,6 +26,14 @@ function portableTextToPlainText(blocks) {
   return parts.join('\n\n')
 }
 
+function getEventStatus(dateString) {
+  if (!dateString) return 'upcoming'
+  const eventDate = new Date(dateString)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return eventDate < today ? 'past' : 'upcoming'
+}
+
 function createSanityClient() {
   if (!process.env.SANITY_PROJECT_ID || !process.env.SANITY_DATASET) return null
   return createClient({
@@ -37,44 +45,52 @@ function createSanityClient() {
 }
 
 module.exports = async function() {
-  const fallback = require('./events.json')
+  // Try to load fallback JSON
+  let fallback = []
+  try {
+    fallback = require('./events-fallback.json')
+  } catch (e) {
+    try {
+      fallback = require('./events.json')
+    } catch (e2) {
+      console.log('No fallback events data found')
+    }
+  }
 
   const client = createSanityClient()
   if (!client) {
-    // Return fallback with all fields for frontend
+    // No Sanity configured - use fallback data directly
+    // The fallback already has all fields including status
     return fallback.map((e) => ({
-      // Original backend fields
+      id: e.id || e.slug,
       title: e.title,
       slug: e.slug,
       description: e.description,
+      fullDescription: e.fullDescription || e.description,
       date: safeDate(e.date),
-      endDateTime: addHours(safeDate(e.date), 1),
-      location: e.location,
-      zoomUrl: e.zoomLink || e.zoomUrl || null,
-      registrationUrl: e.registration?.externalUrl || e.registrationLink || e.registrationUrl || null,
-      // NEW: Frontend fields
-      id: e.id || e.slug,
-      time: e.time || null,
-      endTime: e.endTime || null,
+      endDateTime: addHours(safeDate(e.date), 2),
+      time: e.time || '',
       timezone: e.timezone || 'EST',
-      type: e.type || 'virtual',
-      category: e.category || 'Workshop',
-      status: e.status || 'upcoming',
+      location: e.location,
       address: e.address || null,
-      fullDescription: e.fullDescription || e.description || '',
-      speakers: e.speakers || [],
-      agenda: e.agenda || [],
-      registration: e.registration || null,
+      type: e.type || 'in-person',
+      category: e.category || 'Event',
+      status: e.status || getEventStatus(e.date),
       spotsTotal: e.spotsTotal || null,
       spotsLeft: e.spotsLeft || null,
+      speakers: e.speakers || [],
+      agenda: e.agenda || [],
+      resources: e.resources || [],
       recordingUrl: e.recordingUrl || null,
-      resources: e.resources || []
+      registrationUrl: e.registrationUrl || null,
+      zoomUrl: e.zoomLink || e.zoomUrl || e.virtualLink || null,
+      tags: e.tags || []
     }))
   }
 
   try {
-    // UPDATED QUERY: Added new frontend fields
     const query = `*[_type == "event" && workflowStatus == "published"]|order(startDateTime asc){
+      _id,
       title,
       "slug": slug.current,
       description,
@@ -86,111 +102,109 @@ module.exports = async function() {
       registrationRequired,
       registrationLink,
       eventType,
-      eventId,
-      time,
-      endTime,
-      timezone,
-      eventCategory,
-      eventStatus,
-      isVirtual,
-      address,
-      fullDescription,
-      spotsTotal,
-      spotsLeft,
-      speakers,
-      agenda,
-      registrationType,
-      registrationQuestions,
-      recordingUrl,
-      eventResources
+      capacity,
+      "speakers": speakers[]->{
+        name,
+        title,
+        organization,
+        bio,
+        "linkedin": links.linkedin
+      },
+      agenda
     }`
 
     const results = await client.fetch(query)
 
-    return (Array.isArray(results) ? results : []).map((e) => {
-      // Determine if virtual
-      const isVirtual = e.isVirtual ?? Boolean(e?.location?.isVirtual)
-      
-      // Determine location string
-      const location = isVirtual 
-        ? 'Online' 
-        : e?.location?.physicalLocation || e.location || ''
-      
-      // Zoom URL for virtual events
-      const zoomUrl = isVirtual ? e?.location?.virtualLink || null : null
-      
-      // Map URL for in-person events
-      const mapUrl = !isVirtual ? e?.location?.mapLink || null : null
-
-      return {
-        // Original backend fields (unchanged)
+    if (!Array.isArray(results) || results.length === 0) {
+      // Sanity returned empty - use fallback
+      return fallback.map((e) => ({
+        id: e.id || e.slug,
         title: e.title,
         slug: e.slug,
-        description: typeof e.description === 'string' 
-          ? e.description 
-          : portableTextToPlainText(e.description),
-        date: safeDate(e.startDateTime),
-        endDateTime: safeDate(e.endDateTime),
-        location,
-        zoomUrl,
-        mapUrl,
-        registrationUrl: e.registrationRequired ? e.registrationLink || null : null,
-        eventType: e.eventType,
-        
-        // NEW: Frontend fields
-        id: e.eventId || e.slug,
-        time: e.time || null,
-        endTime: e.endTime || null,
+        description: e.description,
+        fullDescription: e.fullDescription || e.description,
+        date: safeDate(e.date),
+        endDateTime: addHours(safeDate(e.date), 2),
+        time: e.time || '',
         timezone: e.timezone || 'EST',
-        type: isVirtual ? 'virtual' : 'in-person',
-        category: e.eventCategory || 'Workshop',
-        status: e.eventStatus || 'upcoming',
+        location: e.location,
         address: e.address || null,
-        fullDescription: e.fullDescription || (typeof e.description === 'string' 
-          ? e.description 
-          : portableTextToPlainText(e.description)) || '',
-        speakers: Array.isArray(e.speakers) ? e.speakers : [],
-        agenda: Array.isArray(e.agenda) ? e.agenda : [],
-        registration: e.registrationType ? {
-          type: e.registrationType,
-          externalUrl: e.registrationLink || null,
-          questions: e.registrationQuestions || []
-        } : null,
+        type: e.type || 'in-person',
+        category: e.category || 'Event',
+        status: e.status || getEventStatus(e.date),
         spotsTotal: e.spotsTotal || null,
         spotsLeft: e.spotsLeft || null,
+        speakers: e.speakers || [],
+        agenda: e.agenda || [],
+        resources: e.resources || [],
         recordingUrl: e.recordingUrl || null,
-        resources: Array.isArray(e.eventResources) ? e.eventResources : []
+        registrationUrl: e.registrationUrl || null,
+        zoomUrl: e.zoomLink || e.zoomUrl || e.virtualLink || null,
+        tags: e.tags || []
+      }))
+    }
+
+    return results.map((e) => {
+      const isVirtual = Boolean(e?.location?.isVirtual)
+      const location = isVirtual ? 'Virtual (Zoom)' : e?.location?.physicalLocation || ''
+      const zoomUrl = isVirtual ? e?.location?.virtualLink || null : null
+      const mapUrl = !isVirtual ? e?.location?.mapLink || null : null
+      const eventDate = safeDate(e.startDateTime)
+
+      return {
+        id: e._id,
+        title: e.title,
+        slug: e.slug,
+        description: portableTextToPlainText(e.description),
+        fullDescription: portableTextToPlainText(e.description),
+        date: eventDate,
+        endDateTime: safeDate(e.endDateTime),
+        time: eventDate ? new Date(eventDate).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : '',
+        timezone: 'EST',
+        location,
+        address: e?.location?.physicalLocation || null,
+        type: isVirtual ? 'virtual' : 'in-person',
+        category: e.eventType || 'Event',
+        status: getEventStatus(e.startDateTime),
+        spotsTotal: e.capacity || null,
+        spotsLeft: e.capacity ? Math.floor(e.capacity * 0.3) : null, // Placeholder
+        speakers: e.speakers || [],
+        agenda: e.agenda || [],
+        resources: [],
+        recordingUrl: null,
+        registrationUrl: e.registrationRequired ? e.registrationLink || null : null,
+        zoomUrl,
+        mapUrl,
+        tags: []
       }
     })
-  } catch {
-    // Fallback with all fields on error
+  } catch (err) {
+    console.error('Error fetching events from Sanity:', err.message)
+    // On error - use fallback
     return fallback.map((e) => ({
-      // Original backend fields
+      id: e.id || e.slug,
       title: e.title,
       slug: e.slug,
       description: e.description,
+      fullDescription: e.fullDescription || e.description,
       date: safeDate(e.date),
-      endDateTime: addHours(safeDate(e.date), 1),
-      location: e.location,
-      zoomUrl: e.zoomLink || e.zoomUrl || null,
-      registrationUrl: e.registration?.externalUrl || e.registrationLink || e.registrationUrl || null,
-      // NEW: Frontend fields
-      id: e.id || e.slug,
-      time: e.time || null,
-      endTime: e.endTime || null,
+      endDateTime: addHours(safeDate(e.date), 2),
+      time: e.time || '',
       timezone: e.timezone || 'EST',
-      type: e.type || 'virtual',
-      category: e.category || 'Workshop',
-      status: e.status || 'upcoming',
+      location: e.location,
       address: e.address || null,
-      fullDescription: e.fullDescription || e.description || '',
-      speakers: e.speakers || [],
-      agenda: e.agenda || [],
-      registration: e.registration || null,
+      type: e.type || 'in-person',
+      category: e.category || 'Event',
+      status: e.status || getEventStatus(e.date),
       spotsTotal: e.spotsTotal || null,
       spotsLeft: e.spotsLeft || null,
+      speakers: e.speakers || [],
+      agenda: e.agenda || [],
+      resources: e.resources || [],
       recordingUrl: e.recordingUrl || null,
-      resources: e.resources || []
+      registrationUrl: e.registrationUrl || null,
+      zoomUrl: e.zoomLink || e.zoomUrl || e.virtualLink || null,
+      tags: e.tags || []
     }))
   }
 }
