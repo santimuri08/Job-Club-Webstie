@@ -20,20 +20,32 @@ function dedupeBySlug(items) {
   })
 }
 
+// Helper to map fallback data to consistent format
+function mapFallbackData(fallback) {
+  return dedupeBySlug(fallback.map((r) => ({
+    title: r.title,
+    slug: r.slug,
+    category: r.category,
+    description: r.description || r.excerpt || '',
+    url: r.url || (r.slug ? `/resources/${r.slug}/` : '#'),
+    externalLink: r.url || null,
+    content: r.content || [],
+    // Include additional fields for the modal/cards
+    icon: r.icon || null,
+    type: r.type || 'internal',
+    fullDescription: r.fullDescription || r.description || '',
+    actionText: r.actionText || 'View Guide',
+    actionUrl: r.actionUrl || '#'
+  })))
+}
+
 module.exports = async function() {
   const fallback = require('./resources-fallback.json')
 
   const client = createSanityClient()
   if (!client) {
-    return dedupeBySlug(fallback.map((r) => ({
-      title: r.title,
-      slug: r.slug,
-      category: r.category,
-      description: r.description || r.excerpt || '',
-      url: r.url || (r.slug ? `/resources/${r.slug}/` : '#'),
-      externalLink: r.url || null,
-      content: []
-    })))
+    console.log('Sanity not configured, using fallback resources data')
+    return mapFallbackData(fallback)
   }
 
   try {
@@ -49,6 +61,12 @@ module.exports = async function() {
 
     const results = await client.fetch(query)
 
+    // FIX: If Sanity returns empty results, use fallback data
+    if (!results || results.length === 0) {
+      console.log('Sanity returned no published resources, using fallback data')
+      return mapFallbackData(fallback)
+    }
+
     return dedupeBySlug((Array.isArray(results) ? results : []).map((r) => {
       const category = Array.isArray(r.categories) && r.categories[0] ? r.categories[0] : r.resourceType
       const url = r.externalLink || (r.slug ? `/resources/${r.slug}/` : '#')
@@ -63,15 +81,8 @@ module.exports = async function() {
         content: Array.isArray(r.content) ? r.content : []
       }
     }))
-  } catch {
-    return dedupeBySlug(fallback.map((r) => ({
-      title: r.title,
-      slug: r.slug,
-      category: r.category,
-      description: r.description || r.excerpt || '',
-      url: r.url || (r.slug ? `/resources/${r.slug}/` : '#'),
-      externalLink: r.url || null,
-      content: []
-    })))
+  } catch (error) {
+    console.error('Error fetching resources from Sanity:', error.message)
+    return mapFallbackData(fallback)
   }
 }
