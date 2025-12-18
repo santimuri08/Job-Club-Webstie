@@ -24,7 +24,7 @@
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  --container-max: 1200px;
+  --container-max: 1400px;
   --transition-fast: 150ms ease;
   --transition-base: 300ms ease;
   --transition-slow: 500ms ease;
@@ -760,8 +760,24 @@ img {
 }
 
 .path-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  width: 56px;
+  height: 56px;
+  background: rgba(220, 38, 38, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: var(--color-primary);
+}
+
+.path-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.path-card.featured .path-icon {
+  background: rgba(220, 38, 38, 0.25);
 }
 
 .path-title {
@@ -865,7 +881,7 @@ img {
 }
 
 .resource-card:hover {
-  border-color: var(--color-gray-700);
+  border-color: var(--color-primary);
   transform: translateY(-4px);
 }
 
@@ -880,6 +896,24 @@ img {
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   margin-bottom: 1rem;
+}
+
+.resource-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(220, 38, 38, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.resource-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .resource-title {
@@ -966,19 +1000,121 @@ img {
 }
 
 /* ===========================
-   PRIVACY PAGE
+   LEGAL PAGES (Privacy, Terms)
    =========================== */
+.legal-page {
+  padding-top: 2rem;
+}
+
+.legal-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-gray-800);
+}
+
+.legal-header .section-eyebrow {
+  margin-bottom: 0.75rem;
+}
+
+.legal-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--color-white);
+}
+
+.legal-meta {
+  color: var(--color-gray-500);
+  font-size: 0.9rem;
+}
+
+.legal-content {
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .legal-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.legal-section {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: var(--color-gray-900);
+  border: 1px solid var(--color-gray-800);
+  border-radius: 12px;
+}
+
+.legal-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+
+.legal-section p {
+  color: var(--color-gray-300);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-section ul {
+  margin: 1rem 0 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.legal-section li {
+  color: var(--color-gray-300);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.legal-section li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+.legal-section li strong {
+  color: var(--color-white);
+}
+
+.legal-section li:last-child {
+  margin-bottom: 0;
+}
+
+/* Legacy support */
 .privacy-content {
   max-width: 800px;
-  margin: 0 auto;
+  text-align: left;
 }
 
 .privacy-content h2 {
-  font-size: 1.5rem;
-  margin-top: 3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
   padding-top: 2rem;
   border-top: 1px solid var(--color-gray-800);
+  color: var(--color-white);
 }
 
 .privacy-content h2:first-of-type {
@@ -989,7 +1125,8 @@ img {
 
 .privacy-content p {
   margin-bottom: 1rem;
-  color: var(--color-gray-400);
+  color: var(--color-gray-300);
+  line-height: 1.7;
 }
 
 .privacy-content ul {
@@ -999,7 +1136,7 @@ img {
 
 .privacy-content li {
   margin-bottom: 0.5rem;
-  color: var(--color-gray-400);
+  color: var(--color-gray-300);
 }
 
 .last-updated {
@@ -1821,6 +1958,7 @@ img {
     font-size: 1.75rem;
   }
 }
+
 /* ===========================
    FRONTEND ADDITIONS
    Events Page, Resource Modal, Portfolio Guidance
@@ -1982,37 +2120,43 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  border-radius: 10px;
+  min-width: 52px;
+  width: 52px;
+  height: 52px;
+  background: var(--color-primary);
+  border-radius: 8px;
   flex-shrink: 0;
+  padding: 0.35rem;
 }
 
 .event-date-badge.past {
-  background: var(--color-gray-800);
-  border-color: var(--color-gray-700);
+  background: var(--color-gray-700);
 }
 
 .event-date-badge .event-month {
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.55rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1;
+  margin-bottom: 1px;
 }
 
 .event-date-badge.past .event-month {
-  color: var(--color-gray-400);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .event-date-badge .event-day {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-white);
   line-height: 1;
+}
+
+.event-date-badge.past .event-day {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* List Content */
@@ -2045,6 +2189,18 @@ img {
   gap: 0.25rem;
   font-size: 0.7rem;
   color: var(--color-gray-400);
+}
+
+.event-attendees-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  color: var(--color-gray-400);
+}
+
+.event-attendees-badge svg {
+  opacity: 0.7;
 }
 
 .event-list-title {
@@ -2737,23 +2893,6 @@ img {
 /* ===========================
    RESOURCE ICON & CARD ENHANCEMENTS
    =========================== */
-.resource-icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(220, 38, 38, 0.1);
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  color: var(--color-primary);
-}
-
-.resource-icon svg {
-  width: 24px;
-  height: 24px;
-}
-
 .resource-card[data-type="internal"],
 .resource-card[data-type="external"] {
   cursor: pointer;
@@ -3285,14 +3424,15 @@ img {
     flex-direction: row;
     padding: 0.5rem 1rem;
     gap: 0.5rem;
+    border-radius: 6px;
   }
 
   .event-date-badge .event-month {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
   }
 
   .event-date-badge .event-day {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .event-list-action {
@@ -3431,5 +3571,27 @@ img {
 
   .portfolio-reference-card {
     padding: 1.5rem;
+  }
+}
+
+/* ===========================
+   PORTFOLIO CHECKLIST GRID
+   =========================== */
+.portfolio-checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .portfolio-checklist-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-checklist-grid {
+    grid-template-columns: 1fr;
   }
 }
