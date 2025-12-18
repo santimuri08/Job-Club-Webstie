@@ -16,15 +16,87 @@ pageId: resources
     
     <div class="grid grid-3">
       {% for resource in resources %}
-      <div class="resource-card">
+      {% set isExternal = resource.type == 'external' or resource.externalLink or (resource.url and not resource.url.startsWith('/')) %}
+      
+      {% if isExternal %}
+      {# External Resource - Link directly #}
+      <a href="{{ resource.url or resource.externalLink }}" class="resource-card" data-type="external" target="_blank" rel="noopener" data-track-event="resource_click" data-track-label="{{ resource.title }}">
+      {% else %}
+      {# Internal Resource - Opens modal #}
+      <div class="resource-card" data-type="internal" data-resource-slug="{{ resource.slug }}" tabindex="0" role="button" aria-label="View {{ resource.title }} guide">
+      {% endif %}
+      
         <span class="resource-category">{{ resource.category }}</span>
+        
+        <div class="resource-icon">
+          {% if resource.category == "Professional Presence" %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          {% elif resource.category == "Portfolio" %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          {% elif resource.category == "Career" %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          {% elif resource.category == "AI Tools" %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          {% elif resource.category == "Learning" %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          {% elif resource.category == "Tools" %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          {% elif resource.category == "Templates" %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          {% else %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          {% endif %}
+        </div>
+        
         <h3 class="resource-title">{{ resource.title }}</h3>
         <p class="resource-description">{{ resource.description }}</p>
-        {% set isInternal = resource.url and resource.url.startsWith('/') %}
-        <a href="{{ resource.url }}" class="resource-link" data-track-event="resource_click" data-track-label="{{ resource.title }}" {% if not isInternal %}target="_blank" rel="noopener"{% endif %}>
-          View Resource →
-        </a>
+        
+        <span class="resource-link">
+          {% if isExternal %}
+          Open Resource
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          {% else %}
+          View Guide
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          {% endif %}
+        </span>
+        
+      {% if isExternal %}
+      </a>
+      {% else %}
       </div>
+      {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -40,24 +112,229 @@ pageId: resources
     
     <div class="grid grid-4">
       <div class="step-card">
-        <div class="step-number">📚</div>
+        <div class="step-number category-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
         <h3 class="step-title">Learning</h3>
         <p class="step-description">Courses, tutorials, and guides to build your AI skills.</p>
       </div>
       <div class="step-card">
-        <div class="step-number">🛠️</div>
+        <div class="step-number category-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
         <h3 class="step-title">Tools</h3>
         <p class="step-description">Software and platforms to boost your productivity.</p>
       </div>
       <div class="step-card">
-        <div class="step-number">📝</div>
+        <div class="step-number category-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
         <h3 class="step-title">Templates</h3>
         <p class="step-description">Resume, portfolio, and project templates.</p>
       </div>
       <div class="step-card">
-        <div class="step-number">💼</div>
+        <div class="step-number category-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
         <h3 class="step-title">Career</h3>
         <p class="step-description">Job boards, interview prep, and networking tips.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Guidance Section -->
+<section class="page-section portfolio-guidance-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Build Your Brand</span>
+      <h2 class="section-title">Professional Portfolio Checklist</h2>
+      <p class="section-subtitle">Your portfolio is your digital first impression. Make sure it has everything employers look for.</p>
+    </div>
+    
+    <!-- Model Portfolio Reference -->
+    <div class="portfolio-reference-card">
+      <div class="portfolio-reference-content">
+        <div class="portfolio-reference-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="portfolio-reference-text">
+          <h3 class="portfolio-reference-title">See a Model Portfolio</h3>
+          <p class="portfolio-reference-description">Before building yours, study this example portfolio that demonstrates all the best practices covered in our checklist.</p>
+          <a href="https://kaw393939.github.io/117_final_fall_2025/portfolio/" target="_blank" rel="noopener" class="btn btn-primary">
+            View Example Portfolio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Checklist Grid -->
+    <div class="portfolio-checklist-grid">
+      <!-- Essential Info -->
+      <div class="checklist-category">
+        <h4 class="checklist-category-title">
+          <span class="checklist-icon-svg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          Essential Info
+        </h4>
+        <ul class="checklist-items">
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Professional headshot</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Clear name & title</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Brief bio/elevator pitch</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Contact information</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Projects Section -->
+      <div class="checklist-category">
+        <h4 class="checklist-category-title">
+          <span class="checklist-icon-svg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </span>
+          Projects (3-5)
+        </h4>
+        <ul class="checklist-items">
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Project screenshots/demos</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Problem & solution description</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Technologies used</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Links to GitHub/live demo</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="checklist-category">
+        <h4 class="checklist-category-title">
+          <span class="checklist-icon-svg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </span>
+          Social Links
+        </h4>
+        <ul class="checklist-items">
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">LinkedIn profile</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">GitHub profile</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Resume/CV download</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Calendly link (optional)</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Technical Quality -->
+      <div class="checklist-category">
+        <h4 class="checklist-category-title">
+          <span class="checklist-icon-svg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </span>
+          Technical Quality
+        </h4>
+        <ul class="checklist-items">
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Mobile responsive</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">Fast loading (&lt;3 seconds)</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">No broken links</span>
+          </li>
+          <li class="checklist-item">
+            <span class="checkbox-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></span>
+            <span class="item-text">HTTPS enabled</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Quick Start Resources -->
+    <div class="portfolio-resources">
+      <h3 class="resources-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Quick Start Resources
+      </h3>
+      <div class="resources-grid">
+        <a href="https://pages.github.com/" target="_blank" rel="noopener" class="resource-quick-link">
+          <span class="resource-quick-icon-svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </span>
+          <span class="resource-quick-text">
+            <strong>GitHub Pages</strong>
+            <small>Free hosting for your portfolio</small>
+          </span>
+        </a>
+        <a href="https://html5up.net/" target="_blank" rel="noopener" class="resource-quick-link">
+          <span class="resource-quick-icon-svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10"/><path d="M2 12h20"/></svg>
+          </span>
+          <span class="resource-quick-text">
+            <strong>HTML5 UP</strong>
+            <small>Free responsive templates</small>
+          </span>
+        </a>
+        <a href="https://www.canva.com/" target="_blank" rel="noopener" class="resource-quick-link">
+          <span class="resource-quick-icon-svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </span>
+          <span class="resource-quick-text">
+            <strong>Canva</strong>
+            <small>Create graphics & mockups</small>
+          </span>
+        </a>
+        <a href="https://fonts.google.com/" target="_blank" rel="noopener" class="resource-quick-link">
+          <span class="resource-quick-icon-svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          </span>
+          <span class="resource-quick-text">
+            <strong>Google Fonts</strong>
+            <small>Free professional fonts</small>
+          </span>
+        </a>
       </div>
     </div>
   </div>
@@ -76,3 +353,47 @@ pageId: resources
     </div>
   </div>
 </section>
+
+<!-- Resource Modal -->
+<div class="resource-modal" id="resource-modal" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" aria-label="Close modal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-category" id="modal-category"></span>
+        <h2 class="modal-title" id="modal-title"></h2>
+        <p class="modal-description" id="modal-description"></p>
+      </div>
+      
+      <div class="modal-body" id="modal-body">
+        <!-- Content sections will be injected here -->
+      </div>
+      
+      <div class="modal-footer">
+        <a href="#" class="btn btn-primary btn-glow" id="modal-action" target="_blank" rel="noopener">
+          Take Action
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+        <button class="btn btn-secondary modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Resource Data for JavaScript -->
+<script id="resources-data" type="application/json">
+{{ resources | dump | safe }}
+</script>
+
+<script src="/js/resource-modal.js"></script>

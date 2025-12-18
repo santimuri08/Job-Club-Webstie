@@ -1,0 +1,219 @@
+[
+  {
+    "title": "How to Optimize Your LinkedIn for AI Jobs",
+    "slug": "linkedin-optimization-guide",
+    "category": "Professional Presence",
+    "description": "Transform your LinkedIn profile into an AI job magnet with these proven strategies.",
+    "icon": "linkedin",
+    "type": "internal",
+    "fullDescription": "LinkedIn is where 87% of recruiters search for AI talent. Your profile is often the first impression you make on potential employers. A well-optimized profile can lead to inbound job opportunities, networking connections, and visibility in the AI community.",
+    "content": [
+      {
+        "heading": "Why LinkedIn Matters for AI Careers",
+        "text": "LinkedIn is where 87% of recruiters search for AI talent. Your profile is often the first impression you make on potential employers. A well-optimized profile can lead to inbound job opportunities, networking connections, and visibility in the AI community. Many AI startups and tech companies exclusively recruit through LinkedIn, making it essential for your job search."
+      },
+      {
+        "heading": "Craft a Compelling Headline",
+        "text": "Your headline is prime real estate - don't waste it on just your job title. Instead of 'Computer Science Student at NJIT', try 'AI/ML Engineer in Training | Python & TensorFlow | Building Intelligent Systems | Open to Opportunities'. Include 2-3 key skills, your focus area, and a call-to-action."
+      },
+      {
+        "heading": "Write an Engaging About Section",
+        "text": "Your About section should tell your story in 3-4 paragraphs. Start with a hook that captures attention. Describe your passion for AI and what drives you. Highlight 2-3 key projects or achievements with specific results. End with what you're looking for and how to contact you."
+      },
+      {
+        "heading": "Showcase Your AI Projects",
+        "text": "The Featured and Projects sections are crucial for AI roles. For each project include: the problem you solved, technologies used (Python, TensorFlow, PyTorch, scikit-learn), your specific contributions, and measurable results. Link to GitHub repos, live demos, or detailed write-ups."
+      },
+      {
+        "heading": "Quick Wins Checklist",
+        "text": "Complete these today: Upload a professional headshot, add a custom banner image, turn on 'Open to Work' (visible to recruiters only), add your NJIT email to verify your education, request 3 recommendations from professors or supervisors."
+      }
+    ],
+    "actionText": "Update Your LinkedIn",
+    "actionUrl": "https://www.linkedin.com/in/"
+  },
+  {
+    "title": "Build a GitHub Profile That Gets You Interviews",
+    "slug": "github-profile-guide",
+    "category": "Professional Presence",
+    "description": "Learn how to showcase your coding skills and projects on GitHub to impress recruiters.",
+    "icon": "github",
+    "type": "internal",
+    "fullDescription": "GitHub is your coding portfolio. Recruiters and hiring managers review GitHub profiles to assess your actual coding skills, not just what's on your resume.",
+    "content": [
+      {
+        "heading": "Why GitHub Matters",
+        "text": "GitHub is your coding portfolio. Recruiters and hiring managers review GitHub profiles to assess your actual coding skills, not just what's on your resume. A strong GitHub presence demonstrates your coding ability, project experience, collaboration skills, and consistency."
+      },
+      {
+        "heading": "Create an Impressive Profile README",
+        "text": "A profile README is your chance to make a great first impression. Create a repo named exactly your username. Include: a brief introduction, your tech stack with skill badges, current projects, and how to reach you."
+      },
+      {
+        "heading": "Pin Your Best Repositories",
+        "text": "You can pin up to 6 repositories to your profile. Select projects that demonstrate different skills, have clean code and good documentation, and show real-world problem-solving."
+      },
+      {
+        "heading": "Write Professional READMEs",
+        "text": "Every pinned repo needs a stellar README with: project title, problem statement, tech stack, installation instructions, usage examples with screenshots, and results/metrics if applicable."
+      }
+    ],
+    "actionText": "View Example Profile",
+    "actionUrl": "https://github.com/kaw393939"
+  },
+  {
+    "title": "AI Consulting Portfolio Starter Guide",
+    "slug": "ai-consulting-portfolio-guide",
+    "category": "Portfolio",
+    "description": "Build a portfolio that showcases your AI consulting potential with templates and examples.",
+    "icon": "briefcase",
+    "type": "internal",
+    "fullDescription": "For students interested in AI consulting or freelancing, your portfolio needs to demonstrate business value, not just technical skills.",
+    "content": [
+      {
+        "heading": "Portfolio vs. GitHub",
+        "text": "Your portfolio shows business impact; GitHub shows code. Consultants need to demonstrate they can solve business problems, communicate with non-technical stakeholders, and deliver measurable results."
+      },
+      {
+        "heading": "Essential Portfolio Sections",
+        "text": "Include: About/Bio, Services offered, Case studies with results, Testimonials (even from professors), Contact information, and a clear call-to-action for potential clients."
+      },
+      {
+        "heading": "Case Study Format",
+        "text": "Each case study should cover: the client's challenge, your approach, technologies used, results achieved (with numbers), and lessons learned. Even class projects can be framed as case studies."
+      }
+    ],
+    "actionText": "View Example Portfolio",
+    "actionUrl": "https://kaw393939.github.io/117_final_fall_2025/portfolio/"
+  },
+  {
+    "title": "How to Set Up Calendly for Networking",
+    "slug": "calendly-setup-guide",
+    "category": "Professional Presence",
+    "description": "Streamline your networking with professional scheduling - make it easy for mentors and recruiters to book time with you.",
+    "icon": "calendar",
+    "type": "internal",
+    "fullDescription": "Calendly eliminates the back-and-forth of scheduling meetings. It's essential for informational interviews, mentor meetings, and recruiter calls.",
+    "content": [
+      {
+        "heading": "Why Use Calendly",
+        "text": "Calendly eliminates the back-and-forth of scheduling. Having a Calendly link shows you're organized and professional. The free tier is perfect for students."
+      },
+      {
+        "heading": "Setting Up Your Account",
+        "text": "Sign up at calendly.com, connect your Google or Outlook calendar, set your timezone, and add a professional photo. Your link will be calendly.com/yourname."
+      },
+      {
+        "heading": "Create Event Types",
+        "text": "Create at least two event types: a 15-minute 'Quick Chat' and a 30-minute 'Coffee Chat'. Set buffer times, limit advance booking to 2 weeks, and require 24-hour notice."
+      }
+    ],
+    "actionText": "Create Calendly Account",
+    "actionUrl": "https://calendly.com/signup"
+  },
+  {
+    "title": "AI/ML Resume Best Practices",
+    "slug": "resume-tips-guide",
+    "category": "Career",
+    "description": "Craft a resume that passes ATS systems and impresses hiring managers in the AI industry.",
+    "icon": "document",
+    "type": "internal",
+    "fullDescription": "Your resume needs to pass automated screening systems AND impress human reviewers. This guide covers both with specific tips for AI/ML roles.",
+    "content": [
+      {
+        "heading": "ATS-Friendly Formatting",
+        "text": "Use standard section headings (Experience, Education, Skills). Avoid tables, columns, or graphics. Save as PDF. Keep it to 1 page for students/new grads."
+      },
+      {
+        "heading": "Quantify Everything",
+        "text": "Use numbers: 'Improved model accuracy from 78% to 94%', 'Processed 1M+ records', 'Reduced inference time by 3x'. Numbers catch the eye and prove impact."
+      },
+      {
+        "heading": "Technical Skills Section",
+        "text": "List languages (Python, SQL), frameworks (TensorFlow, PyTorch), tools (Jupyter, Git, Docker), and platforms (AWS, GCP). Match keywords from job descriptions."
+      }
+    ],
+    "actionText": "Download Resume Template",
+    "actionUrl": "https://www.overleaf.com/gallery/tagged/cv"
+  },
+  {
+    "title": "AI Interview Preparation Guide",
+    "slug": "interview-prep-guide",
+    "category": "Career",
+    "description": "Prepare for technical interviews with common AI/ML questions and coding challenges.",
+    "icon": "chat",
+    "type": "internal",
+    "fullDescription": "AI interviews typically include coding challenges, ML concepts, and system design. This guide helps you prepare for all three.",
+    "content": [
+      {
+        "heading": "Coding Fundamentals",
+        "text": "Practice LeetCode medium problems focusing on arrays, strings, trees, and dynamic programming. For ML roles, also focus on NumPy and Pandas."
+      },
+      {
+        "heading": "ML Concepts to Know",
+        "text": "Be ready to explain: bias-variance tradeoff, overfitting, gradient descent, cross-validation, and common algorithms (linear regression, decision trees, neural networks)."
+      },
+      {
+        "heading": "Behavioral Questions",
+        "text": "Prepare STAR-method stories for: 'Tell me about a challenging project', 'How do you handle disagreements', 'Describe a time you failed'."
+      }
+    ],
+    "actionText": "Practice on LeetCode",
+    "actionUrl": "https://leetcode.com/"
+  },
+  {
+    "title": "ChatGPT Prompting Guide",
+    "slug": "chatgpt-prompting",
+    "category": "AI Tools",
+    "description": "Master the art of prompting to get better results from ChatGPT and other LLMs.",
+    "icon": "sparkles",
+    "type": "external",
+    "url": "https://platform.openai.com/docs/guides/prompt-engineering"
+  },
+  {
+    "title": "LinkedIn Learning: AI Courses",
+    "slug": "linkedin-learning-ai",
+    "category": "Learning",
+    "description": "Free AI courses available through NJIT's LinkedIn Learning subscription.",
+    "icon": "graduation",
+    "type": "external",
+    "url": "https://www.linkedin.com/learning/topics/artificial-intelligence"
+  },
+  {
+    "title": "GitHub Student Developer Pack",
+    "slug": "github-student-pack",
+    "category": "Tools",
+    "description": "Free developer tools, cloud credits, and learning resources for students.",
+    "icon": "code",
+    "type": "external",
+    "url": "https://education.github.com/pack"
+  },
+  {
+    "title": "Coursera: Machine Learning Specialization",
+    "slug": "coursera-ml",
+    "category": "Learning",
+    "description": "Andrew Ng's famous ML course - the gold standard for learning machine learning.",
+    "icon": "graduation",
+    "type": "external",
+    "url": "https://www.coursera.org/specializations/machine-learning-introduction"
+  },
+  {
+    "title": "Kaggle Competitions & Datasets",
+    "slug": "kaggle",
+    "category": "Learning",
+    "description": "Practice ML with real datasets and compete in challenges to build your portfolio.",
+    "icon": "data",
+    "type": "external",
+    "url": "https://www.kaggle.com/"
+  },
+  {
+    "title": "Figma for Education",
+    "slug": "figma-students",
+    "category": "Tools",
+    "description": "Free Figma Pro for students - design portfolios, mockups, and prototypes.",
+    "icon": "design",
+    "type": "external",
+    "url": "https://www.figma.com/education/"
+  }
+]
+

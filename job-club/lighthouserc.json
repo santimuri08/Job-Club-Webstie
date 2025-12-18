@@ -1,7 +1,15 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./_site"
+      "staticDistDir": "./_site",
+      "url": [
+        "http://localhost/index.html",
+        "http://localhost/home/index.html",
+        "http://localhost/join/index.html",
+        "http://localhost/events/index.html",
+        "http://localhost/resources/index.html"
+      ],
+      "numberOfRuns": 3
     },
     "assert": {
       "assertions": {
@@ -10,6 +18,9 @@
         "categories:best-practices": ["warn", {"minScore": 0.9}],
         "categories:seo": ["warn", {"minScore": 0.9}]
       }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
     }
   }
 }
