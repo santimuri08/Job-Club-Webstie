@@ -26,7 +26,7 @@ pageId: events
             <line x1="3" y1="10" x2="21" y2="10"/>
           </svg>
           Upcoming
-          <span class="tab-count" id="upcoming-count">0</span>
+          <span class="tab-count" id="upcoming-count">{{ events | selectattr("status", "equalto", "upcoming") | list | length }}</span>
         </button>
         <button class="event-tab" role="tab" aria-selected="false" data-tab="past" id="tab-past" aria-controls="panel-past">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -34,19 +34,19 @@ pageId: events
             <polyline points="12 6 12 12 16 14"/>
           </svg>
           Past Events
-          <span class="tab-count" id="past-count">0</span>
+          <span class="tab-count" id="past-count">{{ events | selectattr("status", "equalto", "past") | list | length }}</span>
         </button>
       </div>
       
       <!-- Upcoming Events Panel -->
       <div class="event-panel active" id="panel-upcoming" role="tabpanel" aria-labelledby="tab-upcoming">
         <div class="events-list" id="upcoming-events-list">
-          {% set upcomingEvents = events | selectattr("status", "equalto", "upcoming") %}
+          {% set upcomingEvents = events | selectattr("status", "equalto", "upcoming") | list %}
           {% for event in upcomingEvents %}
           <article class="event-list-item" data-event-id="{{ event.id }}" tabindex="0" role="button" aria-label="View details for {{ event.title }}">
             <div class="event-date-badge">
-              <span class="event-month">{{ event.date | date("MMM") }}</span>
-              <span class="event-day">{{ event.date | date("DD") }}</span>
+              <span class="event-month">{{ event.date | date("LLL") | upper }}</span>
+              <span class="event-day">{{ event.date | date("d") }}</span>
             </div>
             
             <div class="event-list-content">
@@ -78,7 +78,7 @@ pageId: events
                     <circle cx="12" cy="12" r="10"/>
                     <polyline points="12 6 12 12 16 14"/>
                   </svg>
-                  {{ event.time }} {{ event.timezone }}
+                  {{ event.time }}
                 </span>
                 <span class="event-detail">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -89,7 +89,7 @@ pageId: events
                 </span>
               </div>
               
-              <p class="event-list-description">{{ event.description }}</p>
+              <p class="event-list-description">{{ event.description | truncate(150) }}</p>
             </div>
             
             <div class="event-list-action">
@@ -122,17 +122,28 @@ pageId: events
       <!-- Past Events Panel -->
       <div class="event-panel" id="panel-past" role="tabpanel" aria-labelledby="tab-past" hidden>
         <div class="events-list" id="past-events-list">
-          {% set pastEvents = events | selectattr("status", "equalto", "past") %}
+          {% set pastEvents = events | selectattr("status", "equalto", "past") | list %}
           {% for event in pastEvents %}
           <article class="event-list-item past" data-event-id="{{ event.id }}" tabindex="0" role="button" aria-label="View details for {{ event.title }}">
             <div class="event-date-badge past">
-              <span class="event-month">{{ event.date | date("MMM") }}</span>
-              <span class="event-day">{{ event.date | date("DD") }}</span>
+              <span class="event-month">{{ event.date | date("LLL") | upper }}</span>
+              <span class="event-day">{{ event.date | date("d") }}</span>
             </div>
             
             <div class="event-list-content">
               <div class="event-list-meta">
                 <span class="event-category-badge">{{ event.category }}</span>
+                {% if event.attendees %}
+                <span class="event-attendees-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                  {{ event.attendees }} attended
+                </span>
+                {% endif %}
               </div>
               
               <h3 class="event-list-title">{{ event.title }}</h3>
@@ -145,7 +156,7 @@ pageId: events
                     <line x1="8" y1="2" x2="8" y2="6"/>
                     <line x1="3" y1="10" x2="21" y2="10"/>
                   </svg>
-                  {{ event.date | date("MMMM D, YYYY") }}
+                  {{ event.date | date("LLLL d, yyyy") }}
                 </span>
                 <span class="event-detail">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -156,7 +167,7 @@ pageId: events
                 </span>
               </div>
               
-              <p class="event-list-description">{{ event.description }}</p>
+              <p class="event-list-description">{{ event.description | truncate(150) }}</p>
             </div>
             
             <div class="event-list-action">
@@ -202,18 +213,18 @@ pageId: events
         </svg>
       </button>
       
-      <!-- Drawer Header -->
-      <div class="drawer-header">
-        <div class="drawer-meta">
-          <span class="drawer-category" id="drawer-category"></span>
-          <span class="drawer-type" id="drawer-type"></span>
-        </div>
-        <h2 class="drawer-title" id="drawer-title"></h2>
-        <p class="drawer-description" id="drawer-description"></p>
-      </div>
-      
       <!-- Drawer Content (Scrollable) -->
       <div class="drawer-content">
+        <!-- Drawer Header -->
+        <div class="drawer-header">
+          <div class="drawer-meta">
+            <span class="drawer-category" id="drawer-category"></span>
+            <span class="drawer-type" id="drawer-type"></span>
+          </div>
+          <h2 class="drawer-title" id="drawer-title"></h2>
+          <p class="drawer-description" id="drawer-description"></p>
+        </div>
+        
         <!-- Event Details Card -->
         <div class="drawer-card">
           <div class="detail-row">
@@ -237,28 +248,6 @@ pageId: events
         <!-- Spots Availability -->
         <div class="drawer-card spots-card" id="spots-card" hidden>
           <div class="spots-info" id="drawer-spots"></div>
-        </div>
-        
-        <!-- Map for In-Person Events -->
-        <div class="drawer-card map-card" id="drawer-map-section" hidden>
-          <iframe 
-            id="google-map-iframe"
-            width="100%" 
-            height="200" 
-            style="border:0; border-radius: 8px;" 
-            loading="lazy" 
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade"
-            src="">
-          </iframe>
-          <a href="#" id="map-directions-link" class="map-link" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-            Get Directions
-          </a>
         </div>
         
         <!-- Full Description -->
@@ -315,18 +304,19 @@ pageId: events
           <div class="resources-list" id="drawer-resources"></div>
         </div>
         
-        <!-- Action Buttons (inside scroll area) -->
+        <!-- Action Buttons -->
         <div class="drawer-actions" id="drawer-actions-upcoming" hidden>
-          <!-- Register Button -->
-          <button class="btn-drawer-primary" id="register-internal-btn">
+          <!-- Calendly Embed Button -->
+          <a href="#" class="btn-drawer-primary" id="calendly-register-btn" target="_blank" rel="noopener">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="8.5" cy="7" r="4"/>
-              <line x1="20" y1="8" x2="20" y2="14"/>
-              <line x1="23" y1="11" x2="17" y2="11"/>
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <path d="M9 16l2 2 4-4"/>
             </svg>
-            Register for This Event
-          </button>
+            Register via Calendly
+          </a>
           
           <!-- Calendar Options -->
           <div class="calendar-options">
@@ -339,95 +329,31 @@ pageId: events
                 </svg>
                 Google
               </a>
-              <a href="#" class="btn-calendar" id="calendly-link" target="_blank" rel="noopener" title="Add via Calendly">
+              <a href="#" class="btn-calendar" id="ical-link" download title="Download .ics file">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="4" width="18" height="18" rx="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                  <path d="M9 16l2 2 4-4"/>
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
-                Calendly
+                iCal
               </a>
             </div>
           </div>
         </div>
         
+        <!-- Past Event Actions -->
+        <div class="drawer-actions" id="drawer-actions-past" hidden>
+          <a href="#" class="btn-drawer-primary" id="watch-recording-btn" target="_blank" rel="noopener" hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+            Watch Recording
+          </a>
+        </div>
+        
       </div>
     </div>
   </aside>
-  
-  <!-- Internal Registration Modal -->
-  <div class="registration-modal" id="registration-modal" aria-hidden="true" role="dialog" aria-labelledby="registration-modal-title">
-    <div class="registration-modal-backdrop" id="registration-modal-backdrop"></div>
-    <div class="registration-modal-content">
-      <button class="registration-modal-close" id="registration-modal-close" aria-label="Close registration">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-      
-      <div class="registration-modal-header">
-        <h3 class="registration-modal-title" id="registration-modal-title">Register for Event</h3>
-        <p class="registration-modal-event" id="registration-modal-event"></p>
-      </div>
-      
-      <form class="registration-form" id="registration-form">
-        <div class="form-group">
-          <label class="form-label" for="reg-name">Full Name <span class="required">*</span></label>
-          <input type="text" id="reg-name" name="name" class="form-input" required placeholder="Your full name">
-          <span class="error-message" id="reg-name-error"></span>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label" for="reg-email">Email Address <span class="required">*</span></label>
-          <input type="email" id="reg-email" name="email" class="form-input" required placeholder="your.email@njit.edu">
-          <span class="error-message" id="reg-email-error"></span>
-        </div>
-        
-        <div class="form-group" id="reg-questions-container">
-          <!-- Dynamic questions will be inserted here -->
-        </div>
-        
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary" id="registration-submit-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-            Complete Registration
-          </button>
-        </div>
-      </form>
-      
-      <!-- Success State -->
-      <div class="registration-success" id="registration-success" hidden>
-        <div class="success-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
-        </div>
-        <h3 class="success-title">You're Registered!</h3>
-        <p class="success-text" id="registration-success-text">
-          We've sent a confirmation email with event details.
-        </p>
-        <div class="success-actions">
-          <a href="#" class="btn btn-secondary btn-sm" id="add-to-calendar-after-reg" target="_blank">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            Add to Calendar
-          </a>
-          <button class="btn btn-ghost btn-sm" id="close-registration-success">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- CTA Section -->
