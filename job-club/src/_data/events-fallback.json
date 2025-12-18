@@ -1,0 +1,340 @@
+[
+  {
+    "id": "evt-001",
+    "slug": "ai-resume-workshop",
+    "title": "AI-Powered Resume Workshop",
+    "description": "Learn how to optimize your resume using AI tools like ChatGPT and Claude. We'll cover ATS optimization, keyword strategies, and hands-on practice.",
+    "fullDescription": "In this interactive workshop, you'll learn the latest techniques for leveraging AI to create compelling, ATS-friendly resumes. We'll walk through real examples, practice with live tools, and you'll leave with an optimized resume ready for your job search.",
+    "date": "2025-01-15",
+    "time": "2:00 PM - 4:00 PM EST",
+    "timezone": "EST",
+    "location": "NJIT Campus Center, Room 220",
+    "address": "150 Bleecker St, Newark, NJ 07102",
+    "type": "in-person",
+    "category": "Workshop",
+    "status": "upcoming",
+    "spotsTotal": 30,
+    "spotsLeft": 8,
+    "calendlyUrl": "https://calendly.com/njit-jobclub/ai-resume-workshop",
+    "speakers": [
+      {
+        "name": "Dr. Sarah Chen",
+        "title": "Career Services Director",
+        "organization": "NJIT",
+        "bio": "15+ years helping students land their dream jobs in tech."
+      }
+    ],
+    "agenda": [
+      { "time": "2:00 PM", "title": "Welcome & Introduction", "description": "Overview of AI in job searching" },
+      { "time": "2:15 PM", "title": "ATS Deep Dive", "description": "Understanding how applicant tracking systems work" },
+      { "time": "2:45 PM", "title": "Hands-on AI Practice", "description": "Using ChatGPT and Claude to improve your resume" },
+      { "time": "3:30 PM", "title": "Peer Review", "description": "Exchange feedback with fellow attendees" },
+      { "time": "3:50 PM", "title": "Q&A", "description": "Open questions and next steps" }
+    ],
+    "tags": ["resume", "ai-tools", "career"]
+  },
+  {
+    "id": "evt-002",
+    "slug": "tech-interview-prep",
+    "title": "Technical Interview Prep: Data Structures & Algorithms",
+    "description": "Prepare for technical interviews with practice problems, whiteboard sessions, and tips from engineers at top tech companies.",
+    "fullDescription": "This intensive session covers the most common data structures and algorithm questions asked at FAANG companies and tech startups. You'll practice solving problems in real-time and learn strategies for approaching unfamiliar challenges.",
+    "date": "2025-01-22",
+    "time": "6:00 PM - 8:00 PM EST",
+    "timezone": "EST",
+    "location": "Virtual (Zoom)",
+    "type": "virtual",
+    "category": "Workshop",
+    "status": "upcoming",
+    "spotsTotal": 100,
+    "spotsLeft": 45,
+    "calendlyUrl": "https://calendly.com/njit-jobclub/tech-interview-prep",
+    "virtualLink": "https://zoom.us/j/example",
+    "speakers": [
+      {
+        "name": "Michael Torres",
+        "title": "Senior Software Engineer",
+        "organization": "Google",
+        "bio": "NJIT alum ('19) who's conducted 200+ technical interviews."
+      },
+      {
+        "name": "Priya Patel",
+        "title": "Engineering Manager",
+        "organization": "Meta",
+        "bio": "Leads a team of 12 engineers and loves helping students break into tech."
+      }
+    ],
+    "agenda": [
+      { "time": "6:00 PM", "title": "Interview Overview", "description": "What to expect in technical interviews" },
+      { "time": "6:20 PM", "title": "Arrays & Strings", "description": "Common patterns and practice problems" },
+      { "time": "6:50 PM", "title": "Trees & Graphs", "description": "Traversal techniques and applications" },
+      { "time": "7:20 PM", "title": "Live Coding Demo", "description": "Watch engineers solve problems in real-time" },
+      { "time": "7:45 PM", "title": "Q&A Panel", "description": "Ask anything about tech interviews" }
+    ],
+    "tags": ["interviews", "coding", "algorithms"]
+  },
+  {
+    "id": "evt-003",
+    "slug": "linkedin-personal-branding",
+    "title": "LinkedIn Masterclass: Building Your Personal Brand",
+    "description": "Transform your LinkedIn profile from basic to standout. Learn content strategies, networking tips, and how to attract recruiters.",
+    "fullDescription": "Your LinkedIn profile is often the first impression recruiters have of you. In this masterclass, we'll optimize every section of your profile, discuss content creation strategies, and share networking techniques that actually work.",
+    "date": "2025-01-29",
+    "time": "12:00 PM - 1:30 PM EST",
+    "timezone": "EST",
+    "location": "Virtual (Zoom)",
+    "type": "virtual",
+    "category": "Masterclass",
+    "status": "upcoming",
+    "spotsTotal": 75,
+    "spotsLeft": 32,
+    "calendlyUrl": "https://calendly.com/njit-jobclub/linkedin-masterclass",
+    "speakers": [
+      {
+        "name": "Jessica Williams",
+        "title": "LinkedIn Top Voice",
+        "organization": "Career Coach",
+        "bio": "Helped 500+ professionals land jobs through LinkedIn optimization."
+      }
+    ],
+    "agenda": [
+      { "time": "12:00 PM", "title": "Profile Audit", "description": "What makes a profile stand out" },
+      { "time": "12:25 PM", "title": "Headline & About Section", "description": "Writing compelling copy" },
+      { "time": "12:45 PM", "title": "Content Strategy", "description": "What to post and when" },
+      { "time": "1:05 PM", "title": "Networking Tactics", "description": "How to connect without being awkward" },
+      { "time": "1:20 PM", "title": "Live Profile Reviews", "description": "Volunteer profiles get real-time feedback" }
+    ],
+    "tags": ["linkedin", "personal-branding", "networking"]
+  },
+  {
+    "id": "evt-004",
+    "slug": "ai-industry-panel",
+    "title": "Panel: Breaking Into the AI Industry",
+    "description": "Hear from professionals working in AI/ML roles at startups and Fortune 500 companies about career paths and skills needed.",
+    "fullDescription": "The AI industry is booming, but breaking in can feel overwhelming. Our panel of AI professionals will share their journeys, discuss what skills actually matter, and answer your questions about building a career in artificial intelligence.",
+    "date": "2025-02-05",
+    "time": "5:00 PM - 6:30 PM EST",
+    "timezone": "EST",
+    "location": "NJIT Makerspace, Room 101",
+    "address": "323 Dr Martin Luther King Jr Blvd, Newark, NJ 07102",
+    "type": "in-person",
+    "category": "Panel",
+    "status": "upcoming",
+    "spotsTotal": 50,
+    "spotsLeft": 23,
+    "calendlyUrl": "https://calendly.com/njit-jobclub/ai-panel",
+    "speakers": [
+      {
+        "name": "Dr. James Liu",
+        "title": "ML Research Scientist",
+        "organization": "OpenAI",
+        "bio": "Works on large language models and AI safety."
+      },
+      {
+        "name": "Amanda Rodriguez",
+        "title": "AI Product Manager",
+        "organization": "Microsoft",
+        "bio": "Ships AI features used by millions of people."
+      },
+      {
+        "name": "Kevin Park",
+        "title": "Founder & CTO",
+        "organization": "AI Startup",
+        "bio": "Building the next generation of AI tools for developers."
+      }
+    ],
+    "agenda": [
+      { "time": "5:00 PM", "title": "Introductions", "description": "Meet our panelists" },
+      { "time": "5:15 PM", "title": "Career Journeys", "description": "How each panelist got into AI" },
+      { "time": "5:40 PM", "title": "Skills & Education", "description": "What you actually need to know" },
+      { "time": "6:00 PM", "title": "Audience Q&A", "description": "Your questions answered" },
+      { "time": "6:20 PM", "title": "Networking", "description": "Meet the panelists and fellow attendees" }
+    ],
+    "tags": ["ai", "career", "panel", "networking"]
+  },
+  {
+    "id": "evt-005",
+    "slug": "portfolio-review-night",
+    "title": "Portfolio Review Night",
+    "description": "Get your portfolio reviewed by industry professionals. Bring your laptop and receive personalized feedback.",
+    "fullDescription": "Whether you're a designer, developer, or data scientist, your portfolio is crucial. Industry professionals will review your work one-on-one and provide actionable feedback to help you land interviews.",
+    "date": "2025-02-12",
+    "time": "6:00 PM - 8:00 PM EST",
+    "timezone": "EST",
+    "location": "NJIT Campus Center, Ballroom A",
+    "address": "150 Bleecker St, Newark, NJ 07102",
+    "type": "in-person",
+    "category": "Workshop",
+    "status": "upcoming",
+    "spotsTotal": 40,
+    "spotsLeft": 15,
+    "calendlyUrl": "https://calendly.com/njit-jobclub/portfolio-review",
+    "speakers": [
+      {
+        "name": "Multiple Industry Reviewers",
+        "title": "From Various Companies",
+        "organization": "Tech Industry",
+        "bio": "Professionals from companies like Amazon, JPMorgan, and local startups."
+      }
+    ],
+    "agenda": [
+      { "time": "6:00 PM", "title": "Check-in & Matching", "description": "Get paired with a reviewer" },
+      { "time": "6:15 PM", "title": "Review Sessions", "description": "15-minute one-on-one reviews" },
+      { "time": "7:30 PM", "title": "Group Discussion", "description": "Common patterns and tips" },
+      { "time": "7:50 PM", "title": "Networking", "description": "Connect with reviewers and peers" }
+    ],
+    "tags": ["portfolio", "feedback", "career"]
+  },
+  {
+    "id": "evt-past-001",
+    "slug": "fall-kickoff-2024",
+    "title": "Job Club Fall 2024 Kickoff",
+    "description": "Our semester kickoff introducing Job Club's mission, upcoming events, and how to maximize your membership.",
+    "fullDescription": "We kicked off the fall semester with an energetic introduction to Job Club. Members learned about our mission, met the leadership team, and got a preview of all the amazing events planned for the semester.",
+    "date": "2024-09-10",
+    "time": "5:00 PM - 6:30 PM EST",
+    "timezone": "EST",
+    "location": "NJIT Campus Center, Room 220",
+    "type": "in-person",
+    "category": "Networking",
+    "status": "past",
+    "attendees": 65,
+    "recordingUrl": "https://youtube.com/watch?v=example1",
+    "speakers": [
+      {
+        "name": "Prof. Keith Williams",
+        "title": "Faculty Advisor",
+        "organization": "NJIT",
+        "bio": "Leading Job Club's mission to prepare students for AI careers."
+      }
+    ],
+    "resources": [
+      { "title": "Kickoff Slides", "url": "https://docs.google.com/presentation/d/example1", "type": "slides" },
+      { "title": "Event Recording", "url": "https://youtube.com/watch?v=example1", "type": "video" }
+    ],
+    "tags": ["kickoff", "networking", "introduction"]
+  },
+  {
+    "id": "evt-past-002",
+    "slug": "salary-negotiation",
+    "title": "Salary Negotiation Strategies",
+    "description": "Learn proven techniques to negotiate your job offers confidently and maximize your compensation package.",
+    "fullDescription": "Don't leave money on the table! This workshop covered research-backed negotiation strategies, how to evaluate total compensation, and real scripts you can use when negotiating with recruiters.",
+    "date": "2024-10-08",
+    "time": "4:00 PM - 5:30 PM EST",
+    "timezone": "EST",
+    "location": "Virtual (Zoom)",
+    "type": "virtual",
+    "category": "Workshop",
+    "status": "past",
+    "attendees": 52,
+    "recordingUrl": "https://youtube.com/watch?v=example2",
+    "speakers": [
+      {
+        "name": "Rachel Martinez",
+        "title": "Compensation Consultant",
+        "organization": "Levels.fyi",
+        "bio": "Former recruiter turned compensation expert. Helped 1000+ engineers negotiate higher salaries."
+      }
+    ],
+    "resources": [
+      { "title": "Workshop Recording", "url": "https://youtube.com/watch?v=example2", "type": "video" },
+      { "title": "Negotiation Script Templates", "url": "https://docs.google.com/document/d/example", "type": "doc" },
+      { "title": "Compensation Research Guide", "url": "https://docs.google.com/document/d/example", "type": "doc" }
+    ],
+    "tags": ["salary", "negotiation", "career"]
+  },
+  {
+    "id": "evt-past-003",
+    "slug": "startup-vs-corporate",
+    "title": "Panel: Startup vs Corporate - Which Path is Right for You?",
+    "description": "Alumni from both startups and Fortune 500 companies shared their experiences and helped students decide their ideal career path.",
+    "fullDescription": "Four NJIT alumni with diverse career paths discussed the pros and cons of working at startups versus large corporations. Topics included work-life balance, growth opportunities, compensation differences, and company culture.",
+    "date": "2024-10-22",
+    "time": "6:00 PM - 7:30 PM EST",
+    "timezone": "EST",
+    "location": "NJIT Campus Center, Ballroom B",
+    "type": "in-person",
+    "category": "Panel",
+    "status": "past",
+    "attendees": 78,
+    "recordingUrl": "https://youtube.com/watch?v=example3",
+    "speakers": [
+      {
+        "name": "Jason Lee",
+        "title": "Co-founder",
+        "organization": "TechStartup Inc",
+        "bio": "Left Google to start his own company. 3x founder."
+      },
+      {
+        "name": "Maria Santos",
+        "title": "Senior Product Manager",
+        "organization": "Amazon",
+        "bio": "Built her career at big tech over 8 years."
+      }
+    ],
+    "resources": [
+      { "title": "Panel Recording", "url": "https://youtube.com/watch?v=example3", "type": "video" },
+      { "title": "Career Path Comparison Guide", "url": "https://docs.google.com/document/d/example", "type": "doc" }
+    ],
+    "tags": ["career", "panel", "startup", "corporate"]
+  },
+  {
+    "id": "evt-past-004",
+    "slug": "system-design-basics",
+    "title": "System Design 101 for Interviews",
+    "description": "Introduction to system design concepts and how to approach system design interviews at top tech companies.",
+    "fullDescription": "System design interviews can be intimidating, but they don't have to be! This workshop introduced fundamental concepts like scalability, load balancing, caching, and database design through practical examples.",
+    "date": "2024-11-05",
+    "time": "5:00 PM - 7:00 PM EST",
+    "timezone": "EST",
+    "location": "Virtual (Zoom)",
+    "type": "virtual",
+    "category": "Workshop",
+    "status": "past",
+    "attendees": 89,
+    "recordingUrl": "https://youtube.com/watch?v=example4",
+    "speakers": [
+      {
+        "name": "Alex Nguyen",
+        "title": "Staff Engineer",
+        "organization": "Uber",
+        "bio": "Designed systems handling millions of rides per day."
+      }
+    ],
+    "resources": [
+      { "title": "Workshop Recording", "url": "https://youtube.com/watch?v=example4", "type": "video" },
+      { "title": "System Design Cheat Sheet", "url": "https://docs.google.com/document/d/example", "type": "doc" },
+      { "title": "Practice Problems", "url": "https://github.com/example", "type": "github" }
+    ],
+    "tags": ["system-design", "interviews", "engineering"]
+  },
+  {
+    "id": "evt-past-005",
+    "slug": "networking-strategies",
+    "title": "Networking That Actually Works",
+    "description": "Practical strategies for building genuine professional relationships, both online and at events.",
+    "fullDescription": "Networking doesn't have to feel awkward or transactional. This workshop taught authentic approaches to building professional relationships, following up effectively, and leveraging your network for career opportunities.",
+    "date": "2024-11-19",
+    "time": "12:00 PM - 1:00 PM EST",
+    "timezone": "EST",
+    "location": "NJIT Campus Center, Room 210",
+    "type": "in-person",
+    "category": "Workshop",
+    "status": "past",
+    "attendees": 41,
+    "speakers": [
+      {
+        "name": "Dr. Emily Chang",
+        "title": "Career Development Specialist",
+        "organization": "NJIT Career Services",
+        "bio": "Specializes in helping introverts network effectively."
+      }
+    ],
+    "resources": [
+      { "title": "Networking Templates", "url": "https://docs.google.com/document/d/example", "type": "doc" },
+      { "title": "Follow-up Email Examples", "url": "https://docs.google.com/document/d/example", "type": "doc" }
+    ],
+    "tags": ["networking", "career", "professional-development"]
+  }
+]
